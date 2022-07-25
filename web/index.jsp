@@ -282,12 +282,13 @@
                         <input type="submit" value="Submit"  class="button"/> <br><br><br><br><br>
                         <%
                             if (session.getAttribute("mpsIncorrect")!=null) 
-                            out.println("<p> Matricule ou mot de passe incorrect!</p>");
+                            //out.println("<p style=\"position: relative\"> Matricule ou mot de passe incorrect!</p>");
+                          out.println(" <script> alert(\"Matricule ou mot de passe incorrect\");</script>");
                         %>
 
                         <a href="#">Mot de passe oubliÃ©?</a>
                     </form>
-
+                        
                     <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
                     <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
                     <div class="drop drop-9"></div><div class="drop drop-10"></div>
