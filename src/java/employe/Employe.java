@@ -29,7 +29,7 @@ import ordinateur.OrdinateurUtilise;
     @NamedQuery(name = "Employe.findByMatricule", query = "SELECT e FROM Employe e WHERE e.matricule = :matricule"),
     @NamedQuery(name = "Employe.findByMotDePass", query = "SELECT e FROM Employe e WHERE e.motDePass = :motDePass"),
     @NamedQuery(name = "Employe.findByNomEmploye", query = "SELECT e FROM Employe e WHERE e.nomEmploye = :nomEmploye"),
-    @NamedQuery(name = "Employe.toConnection", query = "SELECT e FROM Employe e WHERE e.matricule = :matricule AND e.motDePass = :motDePass"),
+    @NamedQuery(name = "Employe.toConnection", query = "SELECT e FROM Employe e WHERE e.matricule = ?1 AND e.motDePass = ?2"),
     @NamedQuery(name = "Employe.findByPrenomEmploye", query = "SELECT e FROM Employe e WHERE e.prenomEmploye = :prenomEmploye")})
 //@NamedQuery(name="toConnection" , query = "SELECT matricule FROM EMPLOYE where ")
 public class Employe implements Serializable {

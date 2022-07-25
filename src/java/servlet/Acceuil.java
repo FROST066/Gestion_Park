@@ -4,6 +4,9 @@
  */
 package servlet;
 
+import employe.Employe;
+import employe.EmployeUtilLocal;
+import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,15 +23,9 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "Acceuil", urlPatterns = {"/Acceuil"})
 public class Acceuil extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    @EJB
+    private EmployeUtilLocal util;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +34,7 @@ public class Acceuil extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Acceuil</title>");            
+            out.println("<title>Servlet Acceuil</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Acceuil at " + request.getContextPath() + "</h1>");
@@ -46,53 +43,27 @@ public class Acceuil extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String username = request.getParameter("noms");
+        String matricule = request.getParameter("matricule");
         String password = request.getParameter("mdps");
-        
-        if(username.equals("Directeur") && password.equals("12345")){
+
+        if (util.connectionResult(matricule, password) != 0) {
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+            session.setAttribute("employe", util.loadEmployeByID(matricule));
             response.sendRedirect("PageAccueil.jsp");
-        }else{
-            try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Acceuil</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h3>Username or password incorrect</h3>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("mpsIncorrect", "ok");
+            response.sendRedirect("index.jsp");
         }
     }
 
