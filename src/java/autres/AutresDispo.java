@@ -16,6 +16,9 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,6 +39,18 @@ public class AutresDispo implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_AUTRES_DISPO", nullable = false)
     private Integer idAutresDispo;
+
+    public Date getDateLivraison() {
+        return dateLivraison;
+    }
+
+    public void setDateLivraison(Date dateLivraison) {
+        this.dateLivraison = dateLivraison;
+    }
+    @Basic(optional = false)
+    @Column(name = "DATE_LIVRAISON", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateLivraison;
     @JoinColumn(name = "ID_AUTRES", referencedColumnName = "ID_AUTRES", nullable = false)
     @ManyToOne(optional = false)
     private Autres idAutres;

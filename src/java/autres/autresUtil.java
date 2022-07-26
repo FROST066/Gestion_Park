@@ -17,17 +17,17 @@ public class autresUtil implements autresUtilLocal {
 
     @Override
     public List<Autres> allAutres() {
-        return em.createQuery("from MEMOIRE", Autres.class).getResultList();
+        return em.createNamedQuery("Autres.findAll").getResultList();
     }
 
     @Override
     public List<AutresDispo> allAutresDispo() {
-        return em.createQuery("from AUTRES_DISPO", AutresDispo.class).getResultList();
+        return em.createNamedQuery("AutresDispo.findAll").getResultList();
     }
 
     @Override
     public List<AutresUtilise> allAutresUtilise() {
-        return em.createQuery("from AUTRES_UTILISE", AutresUtilise.class).getResultList();
+        return em.createNamedQuery("AutresUtilise.findAll").getResultList();
     }
 
     @Override

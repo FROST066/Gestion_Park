@@ -24,7 +24,7 @@ public class ordiDAO implements ordiDAOLocal {
     
     @Override
     public List<OrdinateurUtilise> allOrdinateurUtilise() {
-        return em.createQuery("from ORDINATEUR_UTILISE", OrdinateurUtilise.class).getResultList();
+       return em.createNamedQuery("OrdinateurUtilise.findAll").getResultList();
     }
     
     @Override

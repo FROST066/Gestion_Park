@@ -18,17 +18,17 @@ public class logicielUtil implements logicielUtilLocal {
 
     @Override
     public List<Logiciel> allLogiciel() {
-        return em.createQuery("from MEMOIRE", Logiciel.class).getResultList();
+        return em.createNamedQuery("Logiciel.findAll").getResultList();
     }
 
     @Override
     public List<LogicielDispo> allLogicielDispo() {
-        return em.createQuery("from LOGICIEL_DISPO", LogicielDispo.class).getResultList();
+        return em.createNamedQuery("LogicielDispo.findAll").getResultList();
     }
 
     @Override
     public List<LogicielUtilise> allLogicielUtilise() {
-        return em.createQuery("from LOGICIEL_UTILISE", LogicielUtilise.class).getResultList();
+        return em.createNamedQuery("LogicielUtilise.findAll").getResultList();
     }
 
     @Override

@@ -26,12 +26,12 @@ public class memoireUtil implements memoireUtilLocal {
 
     @Override
     public List<MemoireDispo> allMemoireDispo() {
-        return em.createQuery("from MEMOIRE_DISPO", MemoireDispo.class).getResultList();
+        return em.createNamedQuery("MemoireDispo.findAll").getResultList();
     }
 
     @Override
     public List<MemoireUtilise> allMemoireUtilise() {
-        return em.createQuery("from MEMOIRE_UTILISE", MemoireUtilise.class).getResultList();
+        return em.createNamedQuery("MemoireUtilise.findAll").getResultList();
     }
 
     @Override
@@ -63,6 +63,4 @@ public class memoireUtil implements memoireUtilLocal {
     public void deleteMemoireDispo(int idMemoireDispo) {
          em.remove(em.find(MemoireDispo.class,idMemoireDispo));
     }
- 
- 
 }
