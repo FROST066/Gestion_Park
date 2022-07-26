@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import autres.autresUtilLocal;
 import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import ordinateur.Ordinateur;
+import logiciel.logicielUtilLocal;
+import memoire.memoireUtilLocal;
 import ordinateur.ordiDAOLocal;
 
 /**
@@ -25,6 +26,12 @@ public class Stock extends HttpServlet {
 
     @EJB
     private ordiDAOLocal util1;
+    @EJB
+    private logicielUtilLocal util2;
+    @EJB
+    private memoireUtilLocal util3;
+    @EJB
+    private autresUtilLocal util4;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,21 +54,23 @@ public class Stock extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-         response.sendRedirect("Stock.jsp");
+        if (request.getSession().getAttribute("employe") != null) {
+            request.setAttribute("OrdinateursD", util1.allOrdinateurDispo());
+            request.setAttribute("LogicielsD", util2.allLogicielDispo());
+            request.setAttribute("MemoiresD", util3.allMemoireDispo());
+            request.setAttribute("AutresD", util4.allAutresDispo());
+            request.getRequestDispatcher("Stock.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
+        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

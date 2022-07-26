@@ -57,24 +57,25 @@ public class Ajout extends HttpServlet {
         if (request.getParameter("categorie") != null) {
             String categorie = request.getParameter("categorie");
             int id = Integer.parseInt(request.getParameter("id"));
-           if(request.getParameter("id")==null) { 
-               System.out.println("servlet.Ajout.doGet(): id la est null");
-            } else {
-               switch (categorie) {
-                   case "ordinateur" -> util1.addOrdinateurDispo(id);
-                   case "logiciel" -> util2.addLogicielDispo(id);
-                   case "memoire" -> util3.addMemoireDispo(id);
-                   case "autre" -> util4.addAutresDispo(id);
-                   default -> {
-                   }
-               }
+            switch (categorie) {
+                case "ordinateur" ->
+                    util1.addOrdinateurDispo(id);
+                case "logiciel" ->
+                    util2.addLogicielDispo(id);
+                case "memoire" ->
+                    util3.addMemoireDispo(id);
+                case "autre" ->
+                    util4.addAutresDispo(id);
+                default -> {
+                }
             }
+           request.getRequestDispatcher("Ajout.jsp").forward(request, response);
         }
         if (request.getSession().getAttribute("employe") != null) {
-            request.setAttribute("Ordinateurs", util1.allOrdinateur());
-            request.setAttribute("Logiciels", util2.allLogiciel());
-            request.setAttribute("Memoires", util3.allMemoire());
-            request.setAttribute("Autres", util4.allAutres());
+            request.getSession().setAttribute("Ordinateurs", util1.allOrdinateur());
+            request.getSession().setAttribute("Logiciels", util2.allLogiciel());
+            request.getSession().setAttribute("Memoires", util3.allMemoire());
+            request.getSession().setAttribute("Autres", util4.allAutres());
             request.getRequestDispatcher("Ajout.jsp").forward(request, response);
         } else {
             response.sendRedirect("index.jsp");

@@ -5,12 +5,12 @@
 --%>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="ordinateur.OrdinateurDipo" %>
+<%@page import="ordinateur.OrdinateurDispo" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Stock d'Equipements</title>
+        <title>Stock d'Equipements Disponibles</title>
         <style>
             body
             {
@@ -213,13 +213,12 @@
         </style>
     </head>
 
-    <body>
-        <%@include file="EnteteAccueil.jsp" %>
-        <h1>Listes des Equipements en Stock</h1><br>
+    <!--  --><%@include file="EnteteAccueil.jsp" %>
+        <h1>Ajouter un equipement au Stock</h1><br>
         <div class="Liste">
-            <div class=" tab ">
+            <div class=" tab "><br><br><br><br><br><br><br><br>
                 <table class="tab1" >
-                    <tr ><td class="categorie"><b>Ordinateurs</b><img src="img/ordi.png"/></td></tr>
+                    <tr ><td class="categorie" colspan="8" ><b>Ordinateurs</b><img src="img/ordi.png"/></td></tr>
                     <tr>
                         <td>Nom</td>
                         <td>Marque</td>
@@ -227,66 +226,62 @@
                         <td>Ram</td>
                         <td>Rom</td>
                         <td>Vitesse</td>
-                        <td>Recupérer</td>
+                       
                     </tr>
-                    <c:forEach var="row" items="${Ordinateurs}">
+                    <c:forEach var="row" items="${OrdinateursD}">
                         <tr>
-                            <td>${row.getNom()}</td>
-                            <td>${row.getMarque()}</td>
-                            <td>${row.getProcesseur()}</td>
-                            <td>${row.getRam()}</td>
-                            <td>${row.getRom()}</td>
-                            <td>${row.getVitesse()}</td>
-                            <td><button>Recuperer</button></td>
+                            <td>${row.getIdOrdinateur().getNom()}</td>
+                            <td>${row.getIdOrdinateur().getMarque()}</td>
+                            <td>${row.getIdOrdinateur().getProcesseur()}</td>
+                            <td>${row.getIdOrdinateur().getRam()}</td>
+                            <td>${row.getIdOrdinateur().getRom()}</td>
+                            <td>${row.getIdOrdinateur().getVitesse()}</td>
                         </tr>
                     </c:forEach>
                 </table><br><br><br>
 
                 <table >
-                    <tr ><td class="categorie"><b>Equipements Réseautique</b><img src="img/rr.png"/></td></tr>
+                    <tr ><td class="categorie"  colspan="8" ><b>Logiciels</b><img src="img/ps.png"/></td></tr>
                     <tr>
-                        <td>N°série</td>
-                        <td>Nom</td>
-                        <td>Recupérer</td>
-                    </tr>
-                    <c:forEach var="row" items="${Logiciel}">
-                        <tr>
-                            <td><c:out value="${row.numero}" /></td>
-                            <td><c:out value="${row.nom}" /></td>
-                            <td><button>Recuperer</button></td>
-                        </tr>
+                        <td>Nom du logociel</td>
+                        <td>Type</td>
+                        <td>Version</td>
 
-                    </c:forEach>
-                </table><br><br><br>
-
-                <table >
-                    <tr ><td class="categorie"><b>Logiciels</b><img src="img/ps.png"/></td></tr>
-                    <tr>
-                        <td>N°série</td>
-                        <td>Nom</td>
-                        <td>Recupérer</td>
                     </tr>
-                    <c:forEach var="row" items="${Reseau}">
+                    <c:forEach var="row" items="${LogicielsD}">
                         <tr>
-                            <td><c:out value="${row.numero}" /></td>
-                            <td><c:out value="${row.nom}" /></td>
-                            <td><button>Recuperer</button></td>
+                            <td><c:out value="${row.getIdLogiciel().getNomLogiciel()}" /></td>
+                            <td><c:out value="${row.getIdLogiciel().getType()}" /></td>
+                            <td><c:out value="${row.getIdLogiciel().getVersion()}" /></td>
                         </tr>
 
                     </c:forEach>
                 </table><br><br><br>
 
                 <table >
-                    <tr ><td class="categorie"><b>Mémoires</b><img src="img/usb.png"/></td></tr>
+                    <tr ><td class="categorie"  colspan="8" ><b>Mémoires</b><img src="img/usb.png"/></td></tr>
                     <tr>
-                        <td>N°série</td>
                         <td>Nom</td>
-                        <td>Recupérer</td>
-                        <c:forEach var="row" items="${Memoire}">
+                        <td>Capacite</td>
+                  
+                        <c:forEach var="row" items="${MemoiresD}">
                         <tr>
-                            <td><c:out value="${row.numero}" /></td>
-                            <td><c:out value="${row.nom}" /></td>
-                            <td><button>Recuperer</button></td>
+                            <td><c:out value="${row.getIdMemoire().getNomMemoire()}" /></td>
+                            <td><c:out value="${row.getIdMemoire().getCapacite()}" /></td>
+                        </tr>
+                    </c:forEach>
+                </table><br><br><br>
+                
+                <table >
+                    <tr ><td class="categorie"  colspan="8" ><b>Autres</b><img src="img/usb.png"/></td></tr>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Capacite</td>
+                        <c:forEach var="row" items="${AutresD}">
+                        <tr>
+                            <td><c:out value="${row.getIdAutres().getNom() }" /></td>
+                            <td><c:out value="${row.getIdAutres().getDescription()}" /></td>
+                            
                         </tr>
                     </c:forEach>
                 </table>

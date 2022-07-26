@@ -18,6 +18,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -42,17 +44,6 @@ public class OrdinateurDispo implements Serializable {
     @JoinColumn(name = "ID_ORDINATEUR", referencedColumnName = "ID_ORDINATEUR", nullable = false)
     @ManyToOne(optional = false)
     private Ordinateur idOrdinateur;
-    public Date getDateLivraison() {
-        return dateLivraison;
-    }
-
-    public void setDateLivraison(Date dateLivraison) {
-        this.dateLivraison = dateLivraison;
-    }
-    @Basic(optional = false)
-    @Column(name = "DATE_LIVRAISON")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateLivraison;
     public OrdinateurDispo() {
         this(null);
     }
@@ -60,7 +51,6 @@ public class OrdinateurDispo implements Serializable {
     public OrdinateurDispo(Ordinateur idOrdinateur) {
         this.idOrdinateur = idOrdinateur;
     }
-
 
     public Integer getIdOrdinateurDispo() {
         return idOrdinateurDispo;
@@ -92,15 +82,12 @@ public class OrdinateurDispo implements Serializable {
             return false;
         }
         OrdinateurDispo other = (OrdinateurDispo) object;
-        if ((this.idOrdinateurDispo == null && other.idOrdinateurDispo != null) || (this.idOrdinateurDispo != null && !this.idOrdinateurDispo.equals(other.idOrdinateurDispo))) {
-            return false;
-        }
-        return true;
+        return !((this.idOrdinateurDispo == null && other.idOrdinateurDispo != null) || (this.idOrdinateurDispo != null && !this.idOrdinateurDispo.equals(other.idOrdinateurDispo)));
     }
 
     @Override
     public String toString() {
         return "ordinateur.OrdinateurDispo[ idOrdinateurDispo=" + idOrdinateurDispo + " ]";
     }
-    
+
 }

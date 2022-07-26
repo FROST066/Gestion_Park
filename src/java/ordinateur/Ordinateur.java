@@ -173,10 +173,7 @@ public class Ordinateur implements Serializable {
             return false;
         }
         Ordinateur other = (Ordinateur) object;
-        if ((this.idOrdinateur == null && other.idOrdinateur != null) || (this.idOrdinateur != null && !this.idOrdinateur.equals(other.idOrdinateur))) {
-            return false;
-        }
-        return true;
+        return !((this.idOrdinateur == null && other.idOrdinateur != null) || (this.idOrdinateur != null && !this.idOrdinateur.equals(other.idOrdinateur)));
     }
 
     @Override
