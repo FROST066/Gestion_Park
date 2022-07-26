@@ -45,11 +45,14 @@ public class MemoireUtilise implements Serializable {
     private Employe matricule;
 
     public MemoireUtilise() {
+        this(null,null);
     }
 
-    public MemoireUtilise(Integer idMemoireUtilise) {
-        this.idMemoireUtilise = idMemoireUtilise;
+    public MemoireUtilise(Memoire idMemoire, Employe matricule) {
+        this.idMemoire = idMemoire;
+        this.matricule = matricule;
     }
+
 
     public Integer getIdMemoireUtilise() {
         return idMemoireUtilise;

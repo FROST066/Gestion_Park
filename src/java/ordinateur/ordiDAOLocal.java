@@ -1,5 +1,6 @@
 package ordinateur;
 
+import employe.Employe;
 import jakarta.ejb.Local;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface ordiDAOLocal {
 
     public void addOrdinateurDispo(int idOrdinateur);
 
-    //public void addOrdinateurUtilise(int idOrdinateur, int matricule);
+    public void addOrdinateurUtilise(int idOrdinateurDispo, Employe proprio);
 
     public Ordinateur loadOrdinateurByID(int idOrdinateur);
 

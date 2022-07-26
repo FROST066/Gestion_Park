@@ -4,6 +4,7 @@
  */
 package autres;
 
+import employe.Employe;
 import jakarta.ejb.Local;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface autresUtilLocal {
 
     public void addAutresDispo(int idAutres);
 
-    //public void addAutresUtilise(int idAutres, int matricule);
+     public void addAutresUtilise(int idAutresDispo, Employe proprio);
 
     public Autres loadAutresByID(int idAutres);
 

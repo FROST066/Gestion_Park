@@ -17,7 +17,7 @@
                 background-color:#092434;
                 margin: 0;
                 padding: 0;
-                
+
             }
 
             .Liste
@@ -63,7 +63,7 @@
             }
             .tab1
             {
-               margin-top: -100px;
+                margin-top: -100px;
             }
             .categorie
             {
@@ -76,8 +76,8 @@
             {
                 margin-bottom: -15px;
                 padding-left: 12px;
-            
-            
+
+
             }
             .drop-2
             {
@@ -167,8 +167,8 @@
             }
             .drop-14
             {
-                height: 209px;
-                width: 209px;
+                height: 10px;
+                width: 10px;
                 top: 350px;
                 right: 20px;
             }
@@ -184,15 +184,13 @@
                 transition: all 0.2s ease;
                 filter:blur(0.8px);
             }
-            button
+            .button
             {
 
                 font-size: 1rem;
                 cursor: pointer;
                 background: #00B1C6;
-                border: none;
-                border-left: 2px solid rgba(255,255,255, .3);
-                border-top: 2px solid rgba(255,255,255, .3);
+                border: 2px solid rgba(255,255,255, .3);
                 width: 100px;
                 border-radius: 50px;
                 box-shadow: 20px 20px 60px ;
@@ -202,89 +200,92 @@
                 transition: all .3s;
                 font-family: Cambria;
             }
-            
+
         </style>
     </head>
 
-   <%@include file="EnteteAccueil.jsp" %>
-        <h1>Liste des Equipements en Stock</h1><br>
-        <div class="Liste">
-            <div class="tab ">
-                <table class="tab1" >
-                    <tr ><td class="categorie" colspan="8" ><b>Ordinateurs</b><img src="img/ordi.png"/></td></tr>
+    <%@include file="EnteteAccueil.jsp" %>
+    <h1>Liste des Equipements en Stock</h1><br>
+    <div class="Liste">
+        <div class="tab ">
+            <table class="tab1" >
+                <tr ><td class="categorie" colspan="8" ><b>Ordinateurs</b><img src="img/ordi.png"/></td></tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>Marque</td>
+                    <td>Processeur</td>
+                    <td>Ram</td>
+                    <td>Rom</td>
+                    <td>Vitesse</td>
+
+                </tr>
+                <c:forEach var="row" items="${OrdinateursD}">
                     <tr>
-                        <td>Nom</td>
-                        <td>Marque</td>
-                        <td>Processeur</td>
-                        <td>Ram</td>
-                        <td>Rom</td>
-                        <td>Vitesse</td>
-                       
+                        <td>${row.getIdOrdinateur().getNom()}</td>
+                        <td>${row.getIdOrdinateur().getMarque()}</td>
+                        <td>${row.getIdOrdinateur().getProcesseur()}</td>
+                        <td>${row.getIdOrdinateur().getRam()}</td>
+                        <td>${row.getIdOrdinateur().getRom()}</td>
+                        <td>${row.getIdOrdinateur().getVitesse()}</td>
+                        <td><a class="button" href="/WebApp/Stock?categorie=ordinateur&id=${row.getIdOrdinateurDispo()}" >Recuperer</a></td>
                     </tr>
-                    <c:forEach var="row" items="${OrdinateursD}">
-                        <tr>
-                            <td>${row.getIdOrdinateur().getNom()}</td>
-                            <td>${row.getIdOrdinateur().getMarque()}</td>
-                            <td>${row.getIdOrdinateur().getProcesseur()}</td>
-                            <td>${row.getIdOrdinateur().getRam()}</td>
-                            <td>${row.getIdOrdinateur().getRom()}</td>
-                            <td>${row.getIdOrdinateur().getVitesse()}</td>
-                        </tr>
-                    </c:forEach>
-                </table><br><br><br>
+                </c:forEach>
+            </table><br><br><br>
 
-                <table >
-                    <tr ><td class="categorie"  colspan="8" ><b>Logiciels</b><img src="img/ps.png"/></td></tr>
+            <table >
+                <tr ><td class="categorie"  colspan="8" ><b>Logiciels</b><img src="img/ps.png"/></td></tr>
+                <tr>
+                    <td>Nom du logociel</td>
+                    <td>Type</td>
+                    <td>Version</td>
+
+                </tr>
+                <c:forEach var="row" items="${LogicielsD}">
                     <tr>
-                        <td>Nom du logociel</td>
-                        <td>Type</td>
-                        <td>Version</td>
-
+                        <td><c:out value="${row.getIdLogiciel().getNomLogiciel()}" /></td>
+                        <td><c:out value="${row.getIdLogiciel().getType()}" /></td>
+                        <td><c:out value="${row.getIdLogiciel().getVersion()}" /></td>
+                        <td><a class="button" href="/WebApp/Stock?categorie=logiciel&id=${row.getIdLogicielDispo()}" >Recuperer</a></td>
                     </tr>
-                    <c:forEach var="row" items="${LogicielsD}">
-                        <tr>
-                            <td><c:out value="${row.getIdLogiciel().getNomLogiciel()}" /></td>
-                            <td><c:out value="${row.getIdLogiciel().getType()}" /></td>
-                            <td><c:out value="${row.getIdLogiciel().getVersion()}" /></td>
-                        </tr>
 
-                    </c:forEach>
-                </table><br><br><br>
+                </c:forEach>
+            </table><br><br><br>
 
-                <table >
-                    <tr ><td class="categorie"  colspan="8" ><b>Mémoires</b><img src="img/usb.png"/></td></tr>
+            <table >
+                <tr ><td class="categorie"  colspan="8" ><b>Mémoires</b><img src="img/usb.png"/></td></tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>Capacite</td>
+
+                    <c:forEach var="row" items="${MemoiresD}">
                     <tr>
-                        <td>Nom</td>
-                        <td>Capacite</td>
-                  
-                        <c:forEach var="row" items="${MemoiresD}">
-                        <tr>
-                            <td><c:out value="${row.getIdMemoire().getNomMemoire()}" /></td>
-                            <td><c:out value="${row.getIdMemoire().getCapacite()}" /></td>
-                        </tr>
-                    </c:forEach>
-                </table><br><br><br>
-                
-                <table >
-                    <tr ><td class="categorie"  colspan="8" ><b>Autres</b><img src="img/usb.png"/></td></tr>
+                        <td><c:out value="${row.getIdMemoire().getNomMemoire()}" /></td>
+                        <td><c:out value="${row.getIdMemoire().getCapacite()}" /></td>
+                         <td><a class="button" href="/WebApp/Stock?categorie=memoire&id=${row.getIdMemoireDispo()}" >Recuperer</a></td>
+                    </tr>
+                </c:forEach>
+            </table><br><br><br>
+
+            <table >
+                <tr ><td class="categorie"  colspan="8" ><b>Autres</b><img src="img/usb.png"/></td></tr>
+                <tr>
+                    <td>Nom</td>
+                    <td>Capacite</td>
+                    <c:forEach var="row" items="${AutresD}">
                     <tr>
-                        <td>Nom</td>
-                        <td>Capacite</td>
-                        <c:forEach var="row" items="${AutresD}">
-                        <tr>
-                            <td><c:out value="${row.getIdAutres().getNom() }" /></td>
-                            <td><c:out value="${row.getIdAutres().getDescription()}" /></td>
-                            
-                        </tr>
-                    </c:forEach>
-                </table>
-                
-                <a href="">Copyrigh</a>
-            </div>
+                        <td><c:out value="${row.getIdAutres().getNom() }" /></td>
+                        <td><c:out value="${row.getIdAutres().getDescription()}" /></td>
+<td><a class="button" href="/WebApp/Stock?categorie=autre&id=${row.getIdAutresDispo()}" >Recuperer</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+
+            <a href="">Copyrigh</a>
         </div>
-        <div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
+    </div>
+    <div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
     <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
-<div class="drop drop-9"></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
-<div class="drop drop-13"></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>
+    <div class="drop drop-9"></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
+    <div class="drop drop-13"></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>
 </body>
 </html>

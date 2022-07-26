@@ -1,6 +1,7 @@
 
 package logiciel;
 
+import employe.Employe;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -41,12 +42,7 @@ public class logicielUtil implements logicielUtilLocal {
         em.persist(new LogicielDispo(this.loadLogicielByID(idLogiciel)));
     }
 
-    /*@Override
-    public void addLogicielUtilise(int idLogiciel, int matricule) {
-        em.persist(new LogicielUtilise(idLogiciel, matricule));
-    }*/
-
-    @Override
+     @Override
     public Logiciel loadLogicielByID(int idLogiciel) {
        return em.find(Logiciel.class, idLogiciel);
     }
@@ -61,5 +57,11 @@ public class logicielUtil implements logicielUtilLocal {
          em.remove(em.find(LogicielDispo.class,idLogicielDispo));
     }
  
+     @Override
+    public void addLogicielUtilise(int idLogicielDispo, Employe proprio) {
+        Logiciel meme = this.loadLogicielDispoByID(idLogicielDispo).getIdLogiciel();
+        em.persist(new LogicielUtilise(meme, proprio));
+        this.deleteLogicielDispo(idLogicielDispo);
+    }
  
 }

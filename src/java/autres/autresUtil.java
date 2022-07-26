@@ -1,6 +1,7 @@
 
 package autres;
 
+import employe.Employe;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -40,11 +41,6 @@ public class autresUtil implements autresUtilLocal {
         em.persist(new AutresDispo(this.loadAutresByID(idAutres)));
     }
 
-   // @Override
-    //public void addAutresUtilise(int idAutres, int matricule) {
-    //    em.persist(new AutresUtilise(idAutres, matricule));
-   // }
-
     @Override
     public Autres loadAutresByID(int idAutres) {
        return em.find(Autres.class, idAutres);
@@ -59,6 +55,11 @@ public class autresUtil implements autresUtilLocal {
     public void deleteAutresDispo(int idAutresDispo) {
          em.remove(em.find(AutresDispo.class,idAutresDispo));
     }
- 
+ @Override
+    public void addAutresUtilise(int idAutresDispo, Employe proprio) {
+        Autres meme = this.loadAutresDispoByID(idAutresDispo).getIdAutres();
+        em.persist(new AutresUtilise(meme, proprio));
+        this.deleteAutresDispo(idAutresDispo);
+    }
  
 }

@@ -45,10 +45,12 @@ public class AutresUtilise implements Serializable {
     private Employe matricule;
 
     public AutresUtilise() {
+        this(null, null);
     }
 
-    public AutresUtilise(Integer idAutresUtilise) {
-        this.idAutresUtilise = idAutresUtilise;
+    public AutresUtilise(Autres idAutres, Employe matricule) {
+        this.idAutres = idAutres;
+        this.matricule = matricule;
     }
 
     public Integer getIdAutresUtilise() {

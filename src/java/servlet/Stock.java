@@ -5,6 +5,7 @@
 package servlet;
 
 import autres.autresUtilLocal;
+import employe.Employe;
 import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,6 +55,24 @@ public class Stock extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        
+        if (request.getParameter("categorie") != null) {
+            String categorie = request.getParameter("categorie");
+            int id = Integer.parseInt(request.getParameter("id"));
+            switch (categorie) {
+                case "ordinateur" ->
+                    util1.addOrdinateurUtilise(id, (Employe) request.getSession().getAttribute("employe"));
+                case "logiciel" ->
+                    util2.addLogicielUtilise(id, (Employe) request.getSession().getAttribute("employe"));
+                case "memoire" ->
+                    util3.addMemoireUtilise(id, (Employe) request.getSession().getAttribute("employe"));
+                case "autre" ->
+                    util4.addAutresUtilise(id, (Employe) request.getSession().getAttribute("employe"));
+                default -> {
+                }
+            }
+            request.getRequestDispatcher("Stock.jsp").forward(request, response);
+        }
         if (request.getSession().getAttribute("employe") != null) {
             request.getSession().setAttribute("OrdinateursD", util1.allOrdinateurDispo());
             request.getSession().setAttribute("LogicielsD", util2.allLogicielDispo());

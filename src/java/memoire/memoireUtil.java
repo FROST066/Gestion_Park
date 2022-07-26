@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB30/StatelessEjbClass.java to edit this template
- */
+
 package memoire;
 
+import employe.Employe;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -44,11 +42,6 @@ public class memoireUtil implements memoireUtilLocal {
         em.persist(new MemoireDispo(this.loadMemoireByID(idMemoire)));
     }
 
-    /*@Override
-    public void addMemoireUtilise(int idMemoire, int matricule) {
-        em.persist(new MemoireUtilise(idMemoire, matricule));
-    }*/
-
     @Override
     public Memoire loadMemoireByID(int idMemoire) {
        return em.find(Memoire.class, idMemoire);
@@ -62,5 +55,12 @@ public class memoireUtil implements memoireUtilLocal {
     @Override
     public void deleteMemoireDispo(int idMemoireDispo) {
          em.remove(em.find(MemoireDispo.class,idMemoireDispo));
+    }
+
+    @Override
+    public void addMemoireUtilise(int idMemoireDispo, Employe proprio) {
+       Memoire meme= this.loadMemoireDispoByID(idMemoireDispo).getIdMemoire();
+       em.persist(new MemoireUtilise(meme, proprio));
+       this.deleteMemoireDispo(idMemoireDispo);
     }
 }

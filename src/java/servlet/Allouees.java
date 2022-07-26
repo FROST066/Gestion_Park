@@ -4,6 +4,8 @@
  */
 package servlet;
 
+import autres.autresUtilLocal;
+import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logiciel.logicielUtilLocal;
+import memoire.memoireUtilLocal;
+import ordinateur.ordiDAOLocal;
 
 /**
  *
@@ -19,7 +24,15 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "Alloues", urlPatterns = {"/Alloues"})
 public class Allouees extends HttpServlet {
 
-  
+    @EJB
+    private ordiDAOLocal util1;
+    @EJB
+    private logicielUtilLocal util2;
+    @EJB
+    private memoireUtilLocal util3;
+    @EJB
+    private autresUtilLocal util4;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -28,7 +41,7 @@ public class Allouees extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Allouees</title>");            
+            out.println("<title>Servlet Allouees</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Allouees at " + request.getContextPath() + "</h1>");
@@ -36,29 +49,28 @@ public class Allouees extends HttpServlet {
             out.println("</html>");
         }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-         if(request.getSession().getAttribute("employe")!=null) 
-       response.sendRedirect("Allouees.jsp");
-        else  response.sendRedirect("index.jsp");
-        
+        if (request.getSession().getAttribute("employe") != null) {
+            request.getSession().setAttribute("OrdinateursU", util1.allOrdinateurUtilise());
+            request.getSession().setAttribute("LogicielsU", util2.allLogicielUtilise());
+            request.getSession().setAttribute("MemoiresU", util3.allMemoireUtilise());
+            request.getSession().setAttribute("AutresU", util4.allAutresUtilise());
+            response.sendRedirect("Allouees.jsp");
+            //request.getRequestDispatcher("Ajout.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        response.sendRedirect("Allouees.jsp");
+
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

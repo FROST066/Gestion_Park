@@ -4,6 +4,7 @@
  */
 package logiciel;
 
+import employe.Employe;
 import java.util.List;
 import jakarta.ejb.Local;
 
@@ -24,7 +25,7 @@ public interface logicielUtilLocal {
 
     public void addLogicielDispo(int idLogiciel);
 
-   // public void addLogicielUtilise(int idLogiciel, int matricule);
+   public void addLogicielUtilise(int idLogicielDispo, Employe proprio) ;
 
     public Logiciel loadLogicielByID(int idLogiciel);
 

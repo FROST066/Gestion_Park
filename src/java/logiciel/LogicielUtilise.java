@@ -45,10 +45,12 @@ public class LogicielUtilise implements Serializable {
     private Employe matricule;
 
     public LogicielUtilise() {
+        this(null, null);
     }
 
-    public LogicielUtilise(Integer idLogicielUtilise) {
-        this.idLogicielUtilise = idLogicielUtilise;
+    public LogicielUtilise(Logiciel idLogiciel, Employe matricule) {
+        this.idLogiciel = idLogiciel;
+        this.matricule = matricule;
     }
 
     public Integer getIdLogicielUtilise() {

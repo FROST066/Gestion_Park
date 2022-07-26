@@ -4,6 +4,7 @@
  */
 package memoire;
 
+import employe.Employe;
 import jakarta.ejb.Local;
 import java.util.List;
 
@@ -13,8 +14,8 @@ import java.util.List;
  */
 @Local
 public interface memoireUtilLocal {
-    
-     public List<Memoire> allMemoire();
+
+    public List<Memoire> allMemoire();
 
     public List<MemoireDispo> allMemoireDispo();
 
@@ -24,12 +25,12 @@ public interface memoireUtilLocal {
 
     public void addMemoireDispo(int idMemoire);
 
-    //public void addMemoireUtilise(int idMemoire, int matricule);
+    public void addMemoireUtilise(int idMemoireDispo, Employe proprio);
 
     public Memoire loadMemoireByID(int idMemoire);
 
     public MemoireDispo loadMemoireDispoByID(int idMemoireDispo);
 
     public void deleteMemoireDispo(int idMemoireDispo);
-    
+
 }
