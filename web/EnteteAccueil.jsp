@@ -23,6 +23,7 @@
              background: linear-gradient(20deg,#0058D2,#00B1C6, #006666);
              display: flex;
              z-index: 1;
+             cursor: pointer;
            }
            .div
            {
@@ -35,31 +36,36 @@
            a
            {
              text-decoration: none;    
-             color: white;  
+             color: white; 
+             cursor: pointer;
            }
           .div1
           {
               display: flex;
               width: 300px;
               margin-left: 60px;
+              cursor: pointer;
           }
           .div2
           {
               display: flex;
               width: 270px;
             margin-left: 20px;
+             cursor: pointer;
           }
           .div3
           {
              display: flex;
              width: 270px;
              margin-left: 20px;
+              cursor: pointer;
           }
           .div4
           {
                display: flex;
                margin-left: 20px;
                width: 270px;
+                cursor: pointer;
           }
           .img
           {
@@ -68,7 +74,6 @@
           }
           .logo
           {
-              
                width: 60px;
                height: 45px;
                margin-top: 15px;

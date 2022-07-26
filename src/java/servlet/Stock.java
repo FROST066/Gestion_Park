@@ -55,11 +55,12 @@ public class Stock extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         if (request.getSession().getAttribute("employe") != null) {
-            request.setAttribute("OrdinateursD", util1.allOrdinateurDispo());
-            request.setAttribute("LogicielsD", util2.allLogicielDispo());
-            request.setAttribute("MemoiresD", util3.allMemoireDispo());
-            request.setAttribute("AutresD", util4.allAutresDispo());
-            request.getRequestDispatcher("Stock.jsp").forward(request, response);
+            request.getSession().setAttribute("OrdinateursD", util1.allOrdinateurDispo());
+            request.getSession().setAttribute("LogicielsD", util2.allLogicielDispo());
+            request.getSession().setAttribute("MemoiresD", util3.allMemoireDispo());
+            request.getSession().setAttribute("AutresD", util4.allAutresDispo());
+             response.sendRedirect("Stock.jsp");
+             //this.getServletContext().getRequestDispatcher("/WEB-INF/Stock.jsp").forward(request, response);
         } else {
             response.sendRedirect("index.jsp");
         }

@@ -69,14 +69,15 @@ public class Ajout extends HttpServlet {
                 default -> {
                 }
             }
-           request.getRequestDispatcher("Ajout.jsp").forward(request, response);
+            request.getRequestDispatcher("Ajout.jsp").forward(request, response);
         }
         if (request.getSession().getAttribute("employe") != null) {
             request.getSession().setAttribute("Ordinateurs", util1.allOrdinateur());
             request.getSession().setAttribute("Logiciels", util2.allLogiciel());
             request.getSession().setAttribute("Memoires", util3.allMemoire());
             request.getSession().setAttribute("Autres", util4.allAutres());
-            request.getRequestDispatcher("Ajout.jsp").forward(request, response);
+            response.sendRedirect("Ajout.jsp");
+            //request.getRequestDispatcher("Ajout.jsp").forward(request, response);
         } else {
             response.sendRedirect("index.jsp");
         }

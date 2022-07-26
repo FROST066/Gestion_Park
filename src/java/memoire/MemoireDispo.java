@@ -15,10 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -40,26 +37,16 @@ public class MemoireDispo implements Serializable {
     @Column(name = "ID_MEMOIRE_DISPO", nullable = false)
     private Integer idMemoireDispo;
 
-    public Date getDateLivraison() {
-        return dateLivraison;
-    }
-
-    public void setDateLivraison(Date dateLivraison) {
-        this.dateLivraison = dateLivraison;
-    }
-    @Basic(optional = false)
-    @Column(name = "DATE_LIVRAISON")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateLivraison;
     @JoinColumn(name = "ID_MEMOIRE", referencedColumnName = "ID_MEMOIRE", nullable = false)
     @ManyToOne(optional = false)
     private Memoire idMemoire;
 
     public MemoireDispo() {
+        this(null);
     }
 
-    public MemoireDispo(Integer idMemoireDispo) {
-        this.idMemoireDispo = idMemoireDispo;
+    public MemoireDispo(Memoire idMemoire) {
+        this.idMemoire = idMemoire;
     }
 
     public Integer getIdMemoireDispo() {

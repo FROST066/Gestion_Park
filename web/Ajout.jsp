@@ -20,7 +20,6 @@
             .Liste
             {
                 background-color:#092434;
-                height: 620px;
                 margin-top:100px;
                 width: 95%;
                 position: absolute;
@@ -62,7 +61,7 @@
             }
             .tab1
             {
-                margin-top: 10px;
+                margin-top: -100px;
             }
             .categorie
             {
@@ -78,7 +77,7 @@
             }
             .drop-1
             {
-                
+
                 height: 200px;
                 width: 200px;
                 top: 60px;
@@ -206,14 +205,20 @@
                 transition: all .3s;
                 font-family: Cambria;
             }
+            .secours
+            {
+                font-size: 15px;
+                color: black;
+            }
         </style>
     </head>
 
     <body>
         <%@include file="EnteteAccueil.jsp" %>
+        <a class="secours" href="/WebApp/Acceuil">Copyrigth</a>
         <h1>Ajouter un equipement au Stock</h1><br>
         <div class="Liste">
-            <div class=" tab "><br><br><br><br><br><br><br><br>
+            <div class=" tab ">
                 <table class="tab1" >
                     <tr ><td class="categorie" colspan="8" ><b>Ordinateurs</b><img src="img/ordi.png"/></td></tr>
                     <tr>
@@ -271,7 +276,7 @@
                         </tr>
                     </c:forEach>
                 </table><br><br><br>
-                
+
                 <table >
                     <tr ><td class="categorie"  colspan="8" ><b>Autres</b><img src="img/usb.png"/></td></tr>
                     <tr>
@@ -289,8 +294,8 @@
             </div>
         </div>
         <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
-    <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
-<div class="drop drop-9"></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
-<div class="drop drop-13"></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>
-</body>
+        <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
+        <div class="drop drop-9"></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
+        <div class="drop drop-13"></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>
+    </body>
 </html>

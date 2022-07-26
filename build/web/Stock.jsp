@@ -17,12 +17,12 @@
                 background-color:#092434;
                 margin: 0;
                 padding: 0;
+                
             }
 
             .Liste
             {
                 background-color:#092434;
-                height: 620px;
                 margin-top:100px;
                 width: 95%;
                 position: absolute;
@@ -60,12 +60,10 @@
             table
             {
                 border-collapse: collapse;
-
-
             }
             .tab1
             {
-                margin-top: 10px;
+               margin-top: -100px;
             }
             .categorie
             {
@@ -78,14 +76,8 @@
             {
                 margin-bottom: -15px;
                 padding-left: 12px;
-            }
-            .drop-1
-            {
-                height: 200px;
-                width: 200px;
-                top: 60px;
-                left: 0px;
-
+            
+            
             }
             .drop-2
             {
@@ -210,13 +202,14 @@
                 transition: all .3s;
                 font-family: Cambria;
             }
+            
         </style>
     </head>
 
-    <!--  --><%@include file="EnteteAccueil.jsp" %>
-        <h1>Ajouter un equipement au Stock</h1><br>
+   <%@include file="EnteteAccueil.jsp" %>
+        <h1>Liste des Equipements en Stock</h1><br>
         <div class="Liste">
-            <div class=" tab "><br><br><br><br><br><br><br><br>
+            <div class="tab ">
                 <table class="tab1" >
                     <tr ><td class="categorie" colspan="8" ><b>Ordinateurs</b><img src="img/ordi.png"/></td></tr>
                     <tr>
@@ -285,9 +278,11 @@
                         </tr>
                     </c:forEach>
                 </table>
+                
+                <a href="">Copyrigh</a>
             </div>
         </div>
-        <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
+        <div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
     <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
 <div class="drop drop-9"></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
 <div class="drop drop-13"></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>

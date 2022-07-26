@@ -41,7 +41,7 @@ public class memoireUtil implements memoireUtilLocal {
 
     @Override
     public void addMemoireDispo(int idMemoire) {
-        em.persist(new MemoireDispo(idMemoire));
+        em.persist(new MemoireDispo(this.loadMemoireByID(idMemoire)));
     }
 
     /*@Override
