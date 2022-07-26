@@ -15,10 +15,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -56,10 +56,11 @@ public class AutresDispo implements Serializable {
     private Autres idAutres;
 
     public AutresDispo() {
+        this(null);
     }
 
-    public AutresDispo(Integer idAutresDispo) {
-        this.idAutresDispo = idAutresDispo;
+    public AutresDispo(Autres idAutres) {
+        this.idAutres = idAutres;
     }
 
     public Integer getIdAutresDispo() {

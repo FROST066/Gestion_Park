@@ -12,14 +12,15 @@
             body
             {
                 background-color: #092434;
+                margin: 0;
+                padding: 0;
             }
             .LAlloue
             {
                 background-color: #092434;
                 height: 620px;
                 margin-top:0px;
-                width: 1518px;
-                margin-left: -8px;
+                width: 100%;
                 position: absolute;
                 display: flex;
                 align-items: center;

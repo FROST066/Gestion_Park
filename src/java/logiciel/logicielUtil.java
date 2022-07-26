@@ -38,7 +38,7 @@ public class logicielUtil implements logicielUtilLocal {
 
     @Override
     public void addLogicielDispo(int idLogiciel) {
-        em.persist(new LogicielDispo(idLogiciel));
+        em.persist(new LogicielDispo(this.loadLogicielByID(idLogiciel)));
     }
 
     /*@Override

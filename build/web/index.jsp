@@ -6,24 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
 
-        .container1
-        {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 4%;
-            position: relative;
-        }
-        .container
-        {
-            position: relative;
-            display: flex;
-            width: 900px;
-        }
+        
         .part1
         {
-            height: 80vh;
+            height: 100vh;
             width: 30%;
             background-image:url("img/e.JPG");
 
@@ -31,7 +17,7 @@
 
         .part2
         {
-            height: 80vh;
+            height: 100vh;
             width: 70%;
             background: linear-gradient(20deg,#0058D2,#00B1C6, #006666);
             display: flex;
@@ -41,6 +27,8 @@
         }
         body
         {
+            margin: 0;
+            padding: 0;
             font-family: Courier new;
             display: flex;
             align-items: center;
@@ -55,7 +43,7 @@
         form
         {
             background: rgba(255,255,255, .3);
-            padding: 1.5rem;
+            padding: 6.5rem;
             height: 400px;
             border-radius: 20px;
             border-left: 1px solid rgba(255,255,255, .3);
@@ -69,15 +57,15 @@
             color: white;
             font-weight: 500;
             /*opacity: 0;*/
-            font-size: 1.6rem;
-            margin-bottom: 60px;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
             text-shadow:2px 2px 4px rgba(0, 0, 0, .2);
         }
         a
         {
             text-decoration: none;
             color: #ddd;
-            font-size: 13px;
+            font-size: 18px;
         }
         a:hover
         {
@@ -93,7 +81,7 @@
             border: none;
             border-left: 2px solid rgba(255,255,255, .3);
             border-top: 2px solid rgba(255,255,255, .3);
-            padding: 1rem;
+            padding: 1.2rem;
             width: 200px;
             border-radius: 50px;
             border-color: #0058D2;
@@ -116,8 +104,8 @@
         input[type="text"]
         {
             background: url(img/pp.png) no-repeat scroll 10px 10px;
-            padding-left: 30px;
-            padding-right: 30px;
+            padding-left: 70px;
+            padding-right: 50px;
         }
         .button
         {
@@ -138,7 +126,7 @@
             font-weight: 500;
             text-shadow:2px 2px 4px rgba (0, 0, 0, .2);
             transition: all .3s;
-            margin-bottom: 2em;
+            margin-bottom: 0.4em;
             font-family: Courier new;
 
 
@@ -146,8 +134,8 @@
         input[type="password"]
         {
             background: url(img/pw.png) no-repeat scroll 10px 10px;
-            padding-left: 30px;
-            padding-right: 30px;
+            padding-left: 70px;
+            padding-right: 50px;
         }
         ::placeholder
         {
@@ -157,7 +145,7 @@
         .drop
         {
             background: rgba(255,255,255, .3);
-            border-radius: 10px;
+            border-radius: 50px;
             border-left: 1px solid rgba(255,255,255, .3);
             border-top: 1px solid rgba(255,255,255, .3);
             box-shadow: 10px 10px 60px -8px rgba(0,0,0, .2);
@@ -167,18 +155,18 @@
         }
         .drop-1
         {
-            height: 50px;
-            width: 50px;
-            top: -20px;
-            left: -40px;
+            height: 100px;
+            width: 100px;
+            top: 0px;
+            left: -130px;
 
         }
         .drop-2
         {
-            height: 50px;
-            width: 50px;
-            bottom: -30px;
-            right: -10px;
+            height: 100px;
+            width: 100px;
+            bottom: 0px;
+            right: -160px;
         }
         .drop-3
         {
@@ -244,29 +232,28 @@
         h3
         {
             color: white;
-            font-size: 2.3rem;
-            margin-left: 30px;
+            font-size: 3rem;
+            margin-left: 60px;
             margin-top: 100px;
             font-family:  Light Condensed;
         }
         .connect
         {
-            font-size: 0.8rem;
+            font-size: 1.2rem;
             color: white;
-            margin-left: 15px;
+            margin-left: 18px;
         }
         img
         {
-            width: 100px;
-            height: 70px;
+            width: 160px;
+            height: 100px;
             margin-top: 50px;
             margin-left: 80px;
         }
     </style>
 </head>
 <body>
-    <div class="container1">
-        <div class="container">
+    
             <div class="part1">
                 <img src="img/logo2.png" alt=""/>
                 <h3>Gestion<br>Du Parc<br>Informatique<br>D'IFRI</h3>
@@ -286,7 +273,7 @@
                           out.println(" <script> alert(\"Matricule ou mot de passe incorrect\");</script>");
                         %>
 
-                        <a href="#">Mot de passe oubliÃ©?</a>
+                        <a href="#">Mot de passe oublie?</a>
                     </form>
                         
                     <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
@@ -294,8 +281,7 @@
                     <div class="drop drop-9"></div><div class="drop drop-10"></div>
                 </div>
             </div>
-        </div>
-    </div>
+       
 
 </body>
 </html>  

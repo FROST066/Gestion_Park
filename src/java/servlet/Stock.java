@@ -47,13 +47,7 @@ public class Stock extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-         
-        if (request.getSession().getAttribute("employe") != null) {
-            request.getSession().setAttribute("Ordinateurs",util1.allOrdinateur());
-            request.getRequestDispatcher("Stock.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("index.jsp");
-        }
+         response.sendRedirect("Stock.jsp");
     }
 
     @Override

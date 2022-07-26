@@ -15,10 +15,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -39,11 +39,9 @@ public class OrdinateurDispo implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_ORDINATEUR_DISPO", nullable = false)
     private Integer idOrdinateurDispo;
-    @Basic(optional = false)
-    @Column(name = "DATE_LIVRAISON", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateLivraison;
-
+    @JoinColumn(name = "ID_ORDINATEUR", referencedColumnName = "ID_ORDINATEUR", nullable = false)
+    @ManyToOne(optional = false)
+    private Ordinateur idOrdinateur;
     public Date getDateLivraison() {
         return dateLivraison;
     }
@@ -51,16 +49,16 @@ public class OrdinateurDispo implements Serializable {
     public void setDateLivraison(Date dateLivraison) {
         this.dateLivraison = dateLivraison;
     }
-    @JoinColumn(name = "ID_ORDINATEUR", referencedColumnName = "ID_ORDINATEUR", nullable = false)
-    @ManyToOne(optional = false)
-    private Ordinateur idOrdinateur;
-
+    @Basic(optional = false)
+    @Column(name = "DATE_LIVRAISON")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateLivraison;
     public OrdinateurDispo() {
-        this(0);
+        this(null);
     }
 
-    public OrdinateurDispo(Integer idOrdinateurDispo) {
-        this.idOrdinateurDispo = idOrdinateurDispo;
+    public OrdinateurDispo(Ordinateur idOrdinateur) {
+        this.idOrdinateur = idOrdinateur;
     }
 
 

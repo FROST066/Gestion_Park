@@ -15,10 +15,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -48,7 +48,7 @@ public class MemoireDispo implements Serializable {
         this.dateLivraison = dateLivraison;
     }
     @Basic(optional = false)
-    @Column(name = "DATE_LIVRAISON", nullable = false)
+    @Column(name = "DATE_LIVRAISON")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateLivraison;
     @JoinColumn(name = "ID_MEMOIRE", referencedColumnName = "ID_MEMOIRE", nullable = false)

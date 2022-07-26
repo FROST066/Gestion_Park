@@ -62,6 +62,8 @@ public class Ordinateur implements Serializable {
     @Basic(optional = false)
     @Column(name = "VITESSE", nullable = false)
     private double vitesse;
+    
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrdinateur")
     private List<OrdinateurUtilise> ordinateurUtiliseList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrdinateur")

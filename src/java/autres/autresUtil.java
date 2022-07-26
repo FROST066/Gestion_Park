@@ -37,7 +37,7 @@ public class autresUtil implements autresUtilLocal {
 
     @Override
     public void addAutresDispo(int idAutres) {
-        em.persist(new AutresDispo(idAutres));
+        em.persist(new AutresDispo(this.loadAutresByID(idAutres)));
     }
 
    // @Override

@@ -157,15 +157,12 @@ public class Employe implements Serializable {
             return false;
         }
         Employe other = (Employe) object;
-        if ((this.matricule == null && other.matricule != null) || (this.matricule != null && !this.matricule.equals(other.matricule))) {
-            return false;
-        }
-        return true;
+        return !((this.matricule == null && other.matricule != null) || (this.matricule != null && !this.matricule.equals(other.matricule)));
     }
 
     @Override
     public String toString() {
-        return "employe.Employe[ matricule=" + matricule + " ]";
+        return this.getNomEmploye()+" "+this.getPrenomEmploye();
     }
     
 }

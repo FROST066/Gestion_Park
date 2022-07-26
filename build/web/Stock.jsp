@@ -5,7 +5,7 @@
 --%>
 <%@page  contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="ordinateur.Ordinateur" %>
+<%@page import="ordinateur.OrdinateurDipo" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,19 +15,21 @@
             body
             {
                 background-color:#092434;
+                margin: 0;
+                padding: 0;
             }
 
             .Liste
             {
                 background-color:#092434;
                 height: 620px;
-                margin-top:0px;
-                width: 1518px;
-                margin-left: -8px;
+                margin-top:100px;
+                width: 95%;
                 position: absolute;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                margin-left: 30px;
             }
             h1
             {
@@ -40,7 +42,7 @@
             {
                 color: white;
                 font-size: 1.3rem;
-                width: 380px;
+                width: 300px;
                 text-align: center;
                 font-family: Times new roman;
                 border: 2px solid white;
@@ -51,6 +53,7 @@
             {
                 border: 2px solid white;
                 padding: 10px;
+                width: 95%;
 
             }
 
@@ -67,7 +70,7 @@
             .categorie
             {
                 border: none;
-                width: 300px;
+                width: 500px;
                 font-size: 1.7rem;
                 color:#00B1C6;
             }
@@ -78,9 +81,9 @@
             }
             .drop-1
             {
-                height: 250px;
-                width: 250px;
-                top: -100px;
+                height: 200px;
+                width: 200px;
+                top: 60px;
                 left: 0px;
 
             }
@@ -249,8 +252,8 @@
                     <c:forEach var="row" items="${Logiciel}">
                         <tr>
                             <td><c:out value="${row.numero}" /></td>
-                        <td><c:out value="${row.nom}" /></td>
-                        <td><button>Recuperer</button></td>
+                            <td><c:out value="${row.nom}" /></td>
+                            <td><button>Recuperer</button></td>
                         </tr>
 
                     </c:forEach>
@@ -266,8 +269,8 @@
                     <c:forEach var="row" items="${Reseau}">
                         <tr>
                             <td><c:out value="${row.numero}" /></td>
-                        <td><c:out value="${row.nom}" /></td>
-                        <td><button>Recuperer</button></td>
+                            <td><c:out value="${row.nom}" /></td>
+                            <td><button>Recuperer</button></td>
                         </tr>
 
                     </c:forEach>
@@ -279,22 +282,19 @@
                         <td>N°série</td>
                         <td>Nom</td>
                         <td>Recupérer</td>
-                    <c:forEach var="row" items="${Memoire}">
+                        <c:forEach var="row" items="${Memoire}">
                         <tr>
                             <td><c:out value="${row.numero}" /></td>
-                        <td><c:out value="${row.nom}" /></td>
-                        <td><button>Recuperer</button></td>
+                            <td><c:out value="${row.nom}" /></td>
+                            <td><button>Recuperer</button></td>
                         </tr>
-
                     </c:forEach>
-                    </tr>
-
                 </table>
             </div>
-            <div class="drop drop-1"></div></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
-        <div class="drop drop-5"></div></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
-    <div class="drop drop-9"></div></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
-<div class="drop drop-13"></div></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>
-</div>
+        </div>
+        <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
+    <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
+<div class="drop drop-9"></div><div class="drop drop-10"></div><div class="drop drop-11"></div><div class="drop drop-12"></div>
+<div class="drop drop-13"></div><div class="drop drop-14"></div><div class="drop drop-15"></div><div class="drop drop-16"></div>
 </body>
 </html>

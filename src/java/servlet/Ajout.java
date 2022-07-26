@@ -4,6 +4,8 @@
  */
 package servlet;
 
+import autres.autresUtilLocal;
+import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logiciel.logicielUtilLocal;
+import memoire.memoireUtilLocal;
+import ordinateur.ordiDAOLocal;
 
 /**
  *
@@ -18,6 +23,15 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Ajout", urlPatterns = {"/Ajout"})
 public class Ajout extends HttpServlet {
+
+    @EJB
+    private ordiDAOLocal util1;
+    @EJB
+    private logicielUtilLocal util2;
+    @EJB
+    private memoireUtilLocal util3;
+    @EJB
+    private autresUtilLocal util4;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,7 +41,7 @@ public class Ajout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Ajout</title>");            
+            out.println("<title>Servlet Ajout</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Ajout at " + request.getContextPath() + "</h1>");
@@ -40,20 +54,41 @@ public class Ajout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        if(request.getSession().getAttribute("employe")!=null) 
-      response.sendRedirect("Ajout.jsp");
-        else  response.sendRedirect("index.jsp");
-        
+        if (request.getParameter("categorie") != null) {
+            String categorie = request.getParameter("categorie");
+            int id = Integer.parseInt(request.getParameter("id"));
+           if(request.getParameter("id")==null) { 
+               System.out.println("servlet.Ajout.doGet(): id la est null");
+            } else {
+               switch (categorie) {
+                   case "ordinateur" -> util1.addOrdinateurDispo(id);
+                   case "logiciel" -> util2.addLogicielDispo(id);
+                   case "memoire" -> util3.addMemoireDispo(id);
+                   case "autre" -> util4.addAutresDispo(id);
+                   default -> {
+                   }
+               }
+            }
+        }
+        if (request.getSession().getAttribute("employe") != null) {
+            request.setAttribute("Ordinateurs", util1.allOrdinateur());
+            request.setAttribute("Logiciels", util2.allLogiciel());
+            request.setAttribute("Memoires", util3.allMemoire());
+            request.setAttribute("Autres", util4.allAutres());
+            request.getRequestDispatcher("Ajout.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        // for submission for new equipement
+        // processRequest(request, response);
+
     }
 
-   
     @Override
     public String getServletInfo() {
         return "Short description";

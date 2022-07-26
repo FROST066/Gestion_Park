@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="employe.Employe" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,13 +18,20 @@
                 background-color: #092434;
                 display: flex;
             }
+            .Circle
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;  
+            }
             .LAlloue
             {
+                margin: 0;
+                padding: 0;
                 background-color: #092434;
                 height: 620px;
                 margin-top:0px;
-                width: 1518px;
-                margin-left: -8px;
+                width: 100%;
                 position: absolute;
                 display: flex;
                 align-items: center;
@@ -112,26 +121,33 @@
                border-radius: 100%;
                
            }
+           h4
+           {
+               color: white;
+               font-size: 2em;
+               margin-top: -320px;
+               
+           }
            p
            {
                font-family: Cambria;
-               font-size: 4rem;
+               font-size: 3.2rem;
                color: white;
                text-transform: uppercase;
                letter-spacing: .2em;
                display: inline-block;
-               border: 4px double rgba(255,255,255,.25);
+               border: 6px double rgba(255,255,255,.25);
                border-width: 4px 0;
-               padding: 1.5em 0em;
+               padding: 1.2em 0em;
                position: absolute;
-               top: 15%;
+               top: 25%;
                left: 10%;
-               width: 15em;
+               width: 16em;
               
                span
                {
                letter-spacing: 0;
-               padding: .25em 0 .200em;
+               padding: .16em 0 .130em;
                display: block;
                margin: 0 auto;
                text-shadow: 0 0 80px rgba(255,255,255,.5);
@@ -154,7 +170,9 @@
         <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
          <%@include file="EnteteAccueil.jsp" %>
          <div class="LAlloue">
-             <div id="Circle">
+            
+             <div class="Circle">
+                 <h4><c:out value="Bonsoir ${employe.toString()}"/></h4>
                  <p>Bienvenue sur le site <br>de Gestion du parc <br>
                       <span>
                           informatique d'IFRI

@@ -39,7 +39,7 @@ public class ordiDAO implements ordiDAOLocal {
     
     @Override
     public void addOrdinateurDispo(int idOrdinateur) {
-        em.persist(new OrdinateurDispo(idOrdinateur));
+        em.persist(new OrdinateurDispo(this.loadOrdinateurByID(idOrdinateur)));
     }
 
  
