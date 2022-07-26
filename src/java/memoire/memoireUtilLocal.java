@@ -24,7 +24,7 @@ public interface memoireUtilLocal {
 
     public void addMemoireDispo(int idMemoire);
 
-    public void addMemoireUtilise(int idMemoire, int matricule);
+    //public void addMemoireUtilise(int idMemoire, int matricule);
 
     public Memoire loadMemoireByID(int idMemoire);
 

@@ -13,6 +13,6 @@
     </head>
     <body>
          <%@include file="EnteteAccueil.jsp" %>
-         
+         <%%>
     </body>
 </html>

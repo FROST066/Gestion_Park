@@ -41,10 +41,10 @@ public class logicielUtil implements logicielUtilLocal {
         em.persist(new LogicielDispo(idLogiciel));
     }
 
-    @Override
+    /*@Override
     public void addLogicielUtilise(int idLogiciel, int matricule) {
         em.persist(new LogicielUtilise(idLogiciel, matricule));
-    }
+    }*/
 
     @Override
     public Logiciel loadLogicielByID(int idLogiciel) {

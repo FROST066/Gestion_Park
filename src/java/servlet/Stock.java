@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import ordinateur.Ordinateur;
+import ordinateur.ordiDAOLocal;
 
 /**
  *
@@ -18,6 +22,9 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Stock", urlPatterns = {"/Stock"})
 public class Stock extends HttpServlet {
+
+    @EJB
+    private ordiDAOLocal util1;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,7 +34,7 @@ public class Stock extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Stock</title>");            
+            out.println("<title>Servlet Stock</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Stock at " + request.getContextPath() + "</h1>");
@@ -40,7 +47,13 @@ public class Stock extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        response.sendRedirect("Stock.jsp");
+         
+        if (request.getSession().getAttribute("employe") != null) {
+            request.getSession().setAttribute("Ordinateurs",util1.allOrdinateur());
+            request.getRequestDispatcher("Stock.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
     }
 
     @Override

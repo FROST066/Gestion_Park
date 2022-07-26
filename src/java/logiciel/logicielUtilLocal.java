@@ -24,7 +24,7 @@ public interface logicielUtilLocal {
 
     public void addLogicielDispo(int idLogiciel);
 
-    public void addLogicielUtilise(int idLogiciel, int matricule);
+   // public void addLogicielUtilise(int idLogiciel, int matricule);
 
     public Logiciel loadLogicielByID(int idLogiciel);
 

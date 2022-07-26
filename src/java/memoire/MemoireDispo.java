@@ -4,6 +4,7 @@
  */
 package memoire;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,47 +12,54 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author spmy
  */
 @Entity
-@Table(name = "MEMOIRE_DISPO")
+@Table(name = "MEMOIRE_DISPO", catalog = "Gestion_Park", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "MemoireDispo.findAll", query = "SELECT m FROM MemoireDispo m"),
+    @NamedQuery(name = "MemoireDispo.findByIdMemoireDispo", query = "SELECT m FROM MemoireDispo m WHERE m.idMemoireDispo = :idMemoireDispo")})
 public class MemoireDispo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_MEMOIRE_DISPO")
-     private Integer idMemoireDispo;
-     public Integer getIdMemoireDispo() {
+    @Basic(optional = false)
+    @Column(name = "ID_MEMOIRE_DISPO", nullable = false)
+    private Integer idMemoireDispo;
+    @JoinColumn(name = "ID_MEMOIRE", referencedColumnName = "ID_MEMOIRE", nullable = false)
+    @ManyToOne(optional = false)
+    private Memoire idMemoire;
+
+    public MemoireDispo() {
+    }
+
+    public MemoireDispo(Integer idMemoireDispo) {
+        this.idMemoireDispo = idMemoireDispo;
+    }
+
+    public Integer getIdMemoireDispo() {
         return idMemoireDispo;
     }
-     @Column(name = "ID_MEMOIRE")
-     private int idMemoire;
 
-    public int getIdMemoire() {
+    public void setIdMemoireDispo(Integer idMemoireDispo) {
+        this.idMemoireDispo = idMemoireDispo;
+    }
+
+    public Memoire getIdMemoire() {
         return idMemoire;
     }
 
-    public void setIdMemoire(int idMemoire) {
-        this.idMemoire = idMemoire;
-    }
-     
-    @ManyToOne(optional = false)  @JoinColumn(name = "ID_MEMOIRE", nullable = false, insertable = false, updatable = false)
-    private Memoire memoire;
-    public Memoire getMemoire() {
-        return memoire;
-    }
-
-    public MemoireDispo() {
-        this(0);
-    }
-    
-    public MemoireDispo(int idMemoire) {
+    public void setIdMemoire(Memoire idMemoire) {
         this.idMemoire = idMemoire;
     }
 
@@ -69,12 +77,15 @@ public class MemoireDispo implements Serializable {
             return false;
         }
         MemoireDispo other = (MemoireDispo) object;
-        return !((this.idMemoireDispo == null && other.idMemoireDispo != null) || (this.idMemoireDispo != null && !this.idMemoireDispo.equals(other.idMemoireDispo)));
+        if ((this.idMemoireDispo == null && other.idMemoireDispo != null) || (this.idMemoireDispo != null && !this.idMemoireDispo.equals(other.idMemoireDispo))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "TEST.MemoireDispo[ idMemoireDispo=" + idMemoireDispo + " ]";
+        return "employe.MemoireDispo[ idMemoireDispo=" + idMemoireDispo + " ]";
     }
     
 }

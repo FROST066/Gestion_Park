@@ -1,6 +1,10 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package autres;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,43 +12,39 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author spmy
  */
 @Entity
-@Table(name = "AUTRES_DISPO")
+@Table(name = "AUTRES_DISPO", catalog = "Gestion_Park", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "AutresDispo.findAll", query = "SELECT a FROM AutresDispo a"),
+    @NamedQuery(name = "AutresDispo.findByIdAutresDispo", query = "SELECT a FROM AutresDispo a WHERE a.idAutresDispo = :idAutresDispo")})
 public class AutresDispo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_AUTRES_DISPO")
+    @Basic(optional = false)
+    @Column(name = "ID_AUTRES_DISPO", nullable = false)
     private Integer idAutresDispo;
-    @Column(name = "ID_AUTRES")
-    private int idAutres;
-
-    public int getIdAutres() {
-        return idAutres;
-    }
-
-    @JoinColumn(name = "ID_AUTRES", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "ID_AUTRES", referencedColumnName = "ID_AUTRES", nullable = false)
     @ManyToOne(optional = false)
-    private Autres autres;
-
-    public Autres getAutres() {
-        return this.autres;
-    }
+    private Autres idAutres;
 
     public AutresDispo() {
-        this(0);
     }
 
-    public AutresDispo(Integer idAutres) {
-        this.idAutres = idAutres;
+    public AutresDispo(Integer idAutresDispo) {
+        this.idAutresDispo = idAutresDispo;
     }
 
     public Integer getIdAutresDispo() {
@@ -53,6 +53,14 @@ public class AutresDispo implements Serializable {
 
     public void setIdAutresDispo(Integer idAutresDispo) {
         this.idAutresDispo = idAutresDispo;
+    }
+
+    public Autres getIdAutres() {
+        return idAutres;
+    }
+
+    public void setIdAutres(Autres idAutres) {
+        this.idAutres = idAutres;
     }
 
     @Override
@@ -69,12 +77,15 @@ public class AutresDispo implements Serializable {
             return false;
         }
         AutresDispo other = (AutresDispo) object;
-        return !((this.idAutresDispo == null && other.idAutresDispo != null) || (this.idAutresDispo != null && !this.idAutresDispo.equals(other.idAutresDispo)));
+        if ((this.idAutresDispo == null && other.idAutresDispo != null) || (this.idAutresDispo != null && !this.idAutresDispo.equals(other.idAutresDispo))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "TEST.AutresDispo[ idAutresDispo=" + idAutresDispo + " ]";
+        return "employe.AutresDispo[ idAutresDispo=" + idAutresDispo + " ]";
     }
-
+    
 }

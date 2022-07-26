@@ -2,9 +2,21 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="WebAppPU" transaction-type="JTA">
     <jta-data-source>jdbc/Gestion_Park</jta-data-source>
+     <class>employe.Employe</class>
+    <class>autres.Autres</class>
+    <class>autres.AutresDispo</class>
+    <class>autres.AutresUtilise</class>
+    <class>logiciel.Logiciel</class>
+    <class>logiciel.LogicielDispo</class>
+    <class>logiciel.LogicielUtilise</class>
+    <class>memoire.Memoire</class>
+    <class>memoire.MemoireDispo</class>
+    <class>memoire.MemoireUtilise</class>
+    <class>ordinateur.Ordinateur</class>
+    <class>ordinateur.OrdinateurDispo</class>
+    <class>ordinateur.OrdinateurUtilise</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

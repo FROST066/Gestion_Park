@@ -4,7 +4,6 @@
  */
 package servlet;
 
-import employe.Employe;
 import employe.EmployeUtilLocal;
 import jakarta.ejb.EJB;
 import java.io.IOException;
@@ -46,7 +45,8 @@ public class Acceuil extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.sendRedirect("PageAccueil.jsp");
     }
 
     @Override

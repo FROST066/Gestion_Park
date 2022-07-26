@@ -12,11 +12,11 @@ public interface ordiDAOLocal {
 
     public List<OrdinateurUtilise> allOrdinateurUtilise();
 
-    public void addOrdinateur(String marque, String processeur, double rom, double ram, double vitesse);
+    public void addOrdinateur(String nom,String marque, String processeur, double rom, double ram, double vitesse);
 
     public void addOrdinateurDispo(int idOrdinateur);
 
-    public void addOrdinateurUtilise(int idOrdinateur, int matricule);
+    //public void addOrdinateurUtilise(int idOrdinateur, int matricule);
 
     public Ordinateur loadOrdinateurByID(int idOrdinateur);
 

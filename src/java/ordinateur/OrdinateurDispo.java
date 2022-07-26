@@ -4,15 +4,19 @@
  */
 package ordinateur;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import java.io.Serializable;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -20,33 +24,45 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "ORDINATEUR_DISPO")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "OrdinateurDispo.findAll", query = "SELECT o FROM OrdinateurDispo o"),
+    @NamedQuery(name = "OrdinateurDispo.findByIdOrdinateurDispo", query = "SELECT o FROM OrdinateurDispo o WHERE o.idOrdinateurDispo = :idOrdinateurDispo")})
 public class OrdinateurDispo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "ID_ORDINATEUR_DISPO", nullable = false)
     private Integer idOrdinateurDispo;
-    @Column(name = "ID_ORDINATEUR", nullable = false)
-    private int idOrdinateur;
-
-    public int getIdOrdinateur() {
-        return idOrdinateur;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "ID_ORDINATEUR", nullable = false, insertable = false, updatable = false)
-    private Ordinateur ordinateur;
-
-    public Ordinateur getOrdinateur() {
-        return ordinateur;
-    }
+    @JoinColumn(name = "ID_ORDINATEUR", referencedColumnName = "ID_ORDINATEUR", nullable = false)
+    @ManyToOne(optional = false)
+    private Ordinateur idOrdinateur;
 
     public OrdinateurDispo() {
+        this(0);
     }
 
     public OrdinateurDispo(Integer idOrdinateurDispo) {
         this.idOrdinateurDispo = idOrdinateurDispo;
+    }
+
+
+    public Integer getIdOrdinateurDispo() {
+        return idOrdinateurDispo;
+    }
+
+    public void setIdOrdinateurDispo(Integer idOrdinateurDispo) {
+        this.idOrdinateurDispo = idOrdinateurDispo;
+    }
+
+    public Ordinateur getIdOrdinateur() {
+        return idOrdinateur;
+    }
+
+    public void setIdOrdinateur(Ordinateur idOrdinateur) {
+        this.idOrdinateur = idOrdinateur;
     }
 
     @Override
@@ -63,12 +79,15 @@ public class OrdinateurDispo implements Serializable {
             return false;
         }
         OrdinateurDispo other = (OrdinateurDispo) object;
-        return !((this.idOrdinateurDispo == null && other.idOrdinateurDispo != null) || (this.idOrdinateurDispo != null && !this.idOrdinateurDispo.equals(other.idOrdinateurDispo)));
+        if ((this.idOrdinateurDispo == null && other.idOrdinateurDispo != null) || (this.idOrdinateurDispo != null && !this.idOrdinateurDispo.equals(other.idOrdinateurDispo))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "servlet.OrdinateurDispo[ idOrdinateurDispo=" + idOrdinateurDispo + " ]";
+        return "ordinateur.OrdinateurDispo[ idOrdinateurDispo=" + idOrdinateurDispo + " ]";
     }
-
+    
 }

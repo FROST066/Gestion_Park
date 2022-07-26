@@ -1,6 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package memoire;
 
 import employe.Employe;
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,64 +13,68 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author spmy
  */
 @Entity
-@Table(name = "MEMOIRE_UTILISE")
+@Table(name = "MEMOIRE_UTILISE", catalog = "Gestion_Park", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "MemoireUtilise.findAll", query = "SELECT m FROM MemoireUtilise m"),
+    @NamedQuery(name = "MemoireUtilise.findByIdMemoireUtilise", query = "SELECT m FROM MemoireUtilise m WHERE m.idMemoireUtilise = :idMemoireUtilise")})
 public class MemoireUtilise implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_MEMOIRE_UTILISE")
+    @Basic(optional = false)
+    @Column(name = "ID_MEMOIRE_UTILISE", nullable = false)
     private Integer idMemoireUtilise;
+    @JoinColumn(name = "ID_MEMOIRE", referencedColumnName = "ID_MEMOIRE", nullable = false)
+    @ManyToOne(optional = false)
+    private Memoire idMemoire;
+    @JoinColumn(name = "MATRICULE", referencedColumnName = "MATRICULE", nullable = false)
+    @ManyToOne(optional = false)
+    private Employe matricule;
+
+    public MemoireUtilise() {
+    }
+
+    public MemoireUtilise(Integer idMemoireUtilise) {
+        this.idMemoireUtilise = idMemoireUtilise;
+    }
 
     public Integer getIdMemoireUtilise() {
         return idMemoireUtilise;
     }
-    @Column(name = "ID_MEMOIRE")
-    private int idMemoire;
-    private int matricule;
 
-    public int getIdMemoire() {
+    public void setIdMemoireUtilise(Integer idMemoireUtilise) {
+        this.idMemoireUtilise = idMemoireUtilise;
+    }
+
+    public Memoire getIdMemoire() {
         return idMemoire;
     }
 
-    public int getMatricule() {
+    public void setIdMemoire(Memoire idMemoire) {
+        this.idMemoire = idMemoire;
+    }
+
+    public Employe getMatricule() {
         return matricule;
     }
-    
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "MATRICULE", nullable = false, insertable = false, updatable = false)
-    private Employe employe;
 
-    public Employe getEmploye() {
-        return employe;
-    }
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ID_MEMOIRE", nullable = false, insertable = false, updatable = false)
-    private Memoire memoire;
-
-    public Memoire getMemoire() {
-        return memoire;
-    }
-
-    public MemoireUtilise() {
-        this(0, 0);
-    }
-
-    public MemoireUtilise(int idMemoire, int matricule) {
-        this.idMemoire = idMemoire;
+    public void setMatricule(Employe matricule) {
         this.matricule = matricule;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -80,12 +89,15 @@ public class MemoireUtilise implements Serializable {
             return false;
         }
         MemoireUtilise other = (MemoireUtilise) object;
-        return !((this.idMemoireUtilise == null && other.idMemoireUtilise != null) || (this.idMemoireUtilise != null && !this.idMemoireUtilise.equals(other.idMemoireUtilise)));
+        if ((this.idMemoireUtilise == null && other.idMemoireUtilise != null) || (this.idMemoireUtilise != null && !this.idMemoireUtilise.equals(other.idMemoireUtilise))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "TEST.MemoireUtilise[ idMemoireUtilise=" + idMemoireUtilise + " ]";
+        return "employe.MemoireUtilise[ idMemoireUtilise=" + idMemoireUtilise + " ]";
     }
-
+    
 }

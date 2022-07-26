@@ -4,45 +4,62 @@
  */
 package logiciel;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
-
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author spmy
  */
 @Entity
-@Table(name = "LOGICIEL")
+@Table(name = "LOGICIEL", catalog = "Gestion_Park", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Logiciel.findAll", query = "SELECT l FROM Logiciel l"),
+    @NamedQuery(name = "Logiciel.findByIdLogiciel", query = "SELECT l FROM Logiciel l WHERE l.idLogiciel = :idLogiciel"),
+    @NamedQuery(name = "Logiciel.findByNomLogiciel", query = "SELECT l FROM Logiciel l WHERE l.nomLogiciel = :nomLogiciel"),
+    @NamedQuery(name = "Logiciel.findByType", query = "SELECT l FROM Logiciel l WHERE l.type = :type"),
+    @NamedQuery(name = "Logiciel.findByVersion", query = "SELECT l FROM Logiciel l WHERE l.version = :version")})
 public class Logiciel implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @Column(name = "ID_LOGICIEL")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Double idLogiciel;
-    @Column(name = "NOM_LOGICIEL")
+    @Basic(optional = false)
+    @Column(name = "ID_LOGICIEL", nullable = false)
+    private Integer idLogiciel;
+    @Basic(optional = false)
+    @Column(name = "NOM_LOGICIEL", nullable = false, length = 255)
     private String nomLogiciel;
-    @Column(name = "TYPE")
+    @Basic(optional = false)
+    @Column(name = "TYPE", nullable = false, length = 255)
     private String type;
-    @Column(name = "VERSION")
+    @Basic(optional = false)
+    @Column(name = "VERSION", nullable = false, length = 255)
     private String version;
-    
-    @OneToMany(targetEntity = LogicielDispo.class, mappedBy = "logiciel")
-    private List<LogicielDispo> logicielDispoCollection;
-    @OneToMany(targetEntity = LogicielUtilise.class, mappedBy = "logiciel")
-    private List<LogicielUtilise> logicielUtiliseCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLogiciel")
+    private List<LogicielDispo> logicielDispoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLogiciel")
+    private List<LogicielUtilise> logicielUtiliseList;
 
     public Logiciel() {
-        this("", "","");
+    }
+
+    public Logiciel(Integer idLogiciel) {
+        this.idLogiciel = idLogiciel;
     }
 
     public Logiciel(String nomLogiciel, String type, String version) {
@@ -51,20 +68,11 @@ public class Logiciel implements Serializable {
         this.version = version;
     }
 
-    public List<LogicielDispo> getLogicielDispoCollection() {
-        return logicielDispoCollection;
-    }
-
-    public List<LogicielUtilise> getLogicielUtiliseCollection() {
-        return logicielUtiliseCollection;
-    }
-
-
-    public Double getIdLogiciel() {
+    public Integer getIdLogiciel() {
         return idLogiciel;
     }
 
-    public void setIdLogiciel(Double idLogiciel) {
+    public void setIdLogiciel(Integer idLogiciel) {
         this.idLogiciel = idLogiciel;
     }
 
@@ -91,7 +99,25 @@ public class Logiciel implements Serializable {
     public void setVersion(String version) {
         this.version = version;
     }
-    
+
+    @XmlTransient
+    public List<LogicielDispo> getLogicielDispoList() {
+        return logicielDispoList;
+    }
+
+    public void setLogicielDispoList(List<LogicielDispo> logicielDispoList) {
+        this.logicielDispoList = logicielDispoList;
+    }
+
+    @XmlTransient
+    public List<LogicielUtilise> getLogicielUtiliseList() {
+        return logicielUtiliseList;
+    }
+
+    public void setLogicielUtiliseList(List<LogicielUtilise> logicielUtiliseList) {
+        this.logicielUtiliseList = logicielUtiliseList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -111,7 +137,7 @@ public class Logiciel implements Serializable {
 
     @Override
     public String toString() {
-        return "TEST.Logiciel[ idLogiciel=" + idLogiciel + " ]";
+        return "employe.Logiciel[ idLogiciel=" + idLogiciel + " ]";
     }
     
 }

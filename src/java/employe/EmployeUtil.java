@@ -21,7 +21,7 @@ public class EmployeUtil implements EmployeUtilLocal {
 
     @Override
     public int connectionResult(String matricule, String mdp) {
-        Query q = em.createNamedQuery("Employe.toConnection");
+        Query q = em.createQuery("SELECT e FROM Employe e WHERE e.matricule = ?1 AND e.motDePass =?2");
         q.setParameter(1, matricule);
         q.setParameter(2, mdp);
         return q.getResultList().size();

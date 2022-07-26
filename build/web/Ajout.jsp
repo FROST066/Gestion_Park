@@ -254,6 +254,7 @@
     </head>
     
     <body>
+          <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
         <%@include file="EnteteAccueil.jsp" %>
          <h1>Ajouter un Equipement au Stock</h1><br>
         <div class="LAlloue">

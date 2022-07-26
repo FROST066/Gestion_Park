@@ -13,22 +13,23 @@ public class ordiDAO implements ordiDAOLocal {
     
     @Override
     public List<Ordinateur> allOrdinateur() {
-        return em.createQuery("from ORDINATEUR", Ordinateur.class).getResultList();
+      return   em.createNamedQuery("Ordinateur.findAll").getResultList();
+         
     }
     
     @Override
     public List<OrdinateurDispo> allOrdinateurDispo() {
-        return em.createQuery("from ORDINATEUR", OrdinateurDispo.class).getResultList();
+        return em.createNamedQuery("OrdinateurDispo.findAll").getResultList();
     }
     
     @Override
     public List<OrdinateurUtilise> allOrdinateurUtilise() {
-        return em.createQuery("from ORDINATEUR", OrdinateurUtilise.class).getResultList();
+        return em.createQuery("from ORDINATEUR_UTILISE", OrdinateurUtilise.class).getResultList();
     }
     
     @Override
-    public void addOrdinateur(String marque, String processeur, double rom, double ram, double vitesse) {
-        em.persist(new Ordinateur(marque, processeur, rom, ram, vitesse));
+    public void addOrdinateur(String nom,String marque, String processeur, double rom, double ram, double vitesse) {
+        em.persist(new Ordinateur(nom, marque, processeur, rom, ram, vitesse));
     }
     
     @Override
@@ -41,10 +42,7 @@ public class ordiDAO implements ordiDAOLocal {
         em.persist(new OrdinateurDispo(idOrdinateur));
     }
 
-    @Override
-    public void addOrdinateurUtilise(int idOrdinateur, int matricule) {
-        em.persist(new OrdinateurUtilise(idOrdinateur, matricule));
-    }
+ 
 
     @Override
     public void deleteOrdinateurDispo(int idOrdinateurDispo) {

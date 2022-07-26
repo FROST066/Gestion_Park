@@ -1,53 +1,81 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ordinateur;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
-import logiciel.LogicielUtilise;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author spmy
+ */
 @Entity
 @Table(name = "ORDINATEUR")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Ordinateur.findAll", query = "SELECT o FROM Ordinateur o"),
+    @NamedQuery(name = "Ordinateur.findByIdOrdinateur", query = "SELECT o FROM Ordinateur o WHERE o.idOrdinateur = :idOrdinateur"),
+    @NamedQuery(name = "Ordinateur.findByNom", query = "SELECT o FROM Ordinateur o WHERE o.nom = :nom"),
+    @NamedQuery(name = "Ordinateur.findByMarque", query = "SELECT o FROM Ordinateur o WHERE o.marque = :marque"),
+    @NamedQuery(name = "Ordinateur.findByProcesseur", query = "SELECT o FROM Ordinateur o WHERE o.processeur = :processeur"),
+    @NamedQuery(name = "Ordinateur.findByRam", query = "SELECT o FROM Ordinateur o WHERE o.ram = :ram"),
+    @NamedQuery(name = "Ordinateur.findByRom", query = "SELECT o FROM Ordinateur o WHERE o.rom = :rom"),
+    @NamedQuery(name = "Ordinateur.findByVitesse", query = "SELECT o FROM Ordinateur o WHERE o.vitesse = :vitesse")})
 public class Ordinateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "ID_ORDINATEUR")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idOrdinteur;
-    @Column(name = "MARQUE")
+    @Basic(optional = false)
+    @Column(name = "ID_ORDINATEUR", nullable = false)
+    private Integer idOrdinateur;
+    @Basic(optional = false)
+    @Column(name = "NOM", nullable = false, length = 255)
+    private String nom;
+    @Basic(optional = false)
+    @Column(name = "MARQUE", nullable = false, length = 255)
     private String marque;
-    @Column(name = "PROCESSEUR")
+    @Basic(optional = false)
+    @Column(name = "PROCESSEUR", nullable = false, length = 255)
     private String processeur;
-    @Column(name = "RAM")
-    private Double ram;
-    @Column(name = "ROM")
-    private Double rom;
-    @Column(name = "VITESSE")
-    private Double vitesse;
-    @OneToMany(targetEntity = OrdinateurUtilise.class, mappedBy = "ordinateur")
-    private List<OrdinateurUtilise> ordinateurUtiliseCollection;
-    @OneToMany(targetEntity = OrdinateurDispo.class, mappedBy = "ordinateur")
-    private List<LogicielUtilise> logicielUtiliseCollection ;
-
-    public List<OrdinateurUtilise> getOrdinateurUtiliseCollection() {
-        return ordinateurUtiliseCollection;
-    }
-
-    public List<LogicielUtilise> getLogicielUtiliseCollection() {
-        return logicielUtiliseCollection;
-    }
+    @Basic(optional = false)
+    @Column(name = "RAM", nullable = false)
+    private double ram;
+    @Basic(optional = false)
+    @Column(name = "ROM", nullable = false)
+    private double rom;
+    @Basic(optional = false)
+    @Column(name = "VITESSE", nullable = false)
+    private double vitesse;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrdinateur")
+    private List<OrdinateurUtilise> ordinateurUtiliseList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrdinateur")
+    private List<OrdinateurDispo> ordinateurDispoList;
 
     public Ordinateur() {
-        this("unknow", "unknow", 0, 0, 0);
     }
 
-    public Ordinateur(String marque, String processeur, double rom, double ram, double vitesse) {
+    public Ordinateur(Integer idOrdinateur) {
+        this();
+    }
+
+    public Ordinateur(String nom, String marque, String processeur, double ram, double rom, double vitesse) {
+        this.nom = nom;
         this.marque = marque;
         this.processeur = processeur;
         this.ram = ram;
@@ -55,8 +83,20 @@ public class Ordinateur implements Serializable {
         this.vitesse = vitesse;
     }
 
-    public int getIdOrdinteur() {
-        return idOrdinteur;
+    public Integer getIdOrdinateur() {
+        return idOrdinateur;
+    }
+
+    public void setIdOrdinateur(Integer idOrdinateur) {
+        this.idOrdinateur = idOrdinateur;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getMarque() {
@@ -75,33 +115,71 @@ public class Ordinateur implements Serializable {
         this.processeur = processeur;
     }
 
-    public Double getRam() {
+    public double getRam() {
         return ram;
     }
 
-    public void setRam(Double ram) {
+    public void setRam(double ram) {
         this.ram = ram;
     }
 
-    public Double getRom() {
+    public double getRom() {
         return rom;
     }
 
-    public void setRom(Double rom) {
+    public void setRom(double rom) {
         this.rom = rom;
     }
 
-    public Double getVitesse() {
+    public double getVitesse() {
         return vitesse;
     }
 
-    public void setVitesse(Double vitesse) {
+    public void setVitesse(double vitesse) {
         this.vitesse = vitesse;
+    }
+
+    @XmlTransient
+    public List<OrdinateurUtilise> getOrdinateurUtiliseList() {
+        return ordinateurUtiliseList;
+    }
+
+    public void setOrdinateurUtiliseList(List<OrdinateurUtilise> ordinateurUtiliseList) {
+        this.ordinateurUtiliseList = ordinateurUtiliseList;
+    }
+
+    @XmlTransient
+    public List<OrdinateurDispo> getOrdinateurDispoList() {
+        return ordinateurDispoList;
+    }
+
+    public void setOrdinateurDispoList(List<OrdinateurDispo> ordinateurDispoList) {
+        this.ordinateurDispoList = ordinateurDispoList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idOrdinateur != null ? idOrdinateur.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Ordinateur)) {
+            return false;
+        }
+        Ordinateur other = (Ordinateur) object;
+        if ((this.idOrdinateur == null && other.idOrdinateur != null) || (this.idOrdinateur != null && !this.idOrdinateur.equals(other.idOrdinateur))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "ID_ORDINATEUR: " + this.idOrdinteur + "\nMARQUE: " + this.marque + "\nPROCESSEUR: " + this.processeur + "\nRAM: " + this.ram + " Go\nROM: " + this.rom + " GB\nVITESSE: " + this.vitesse + "GHz";
+        return "ID_ORDINATEUR: " + this.idOrdinateur + "\nMARQUE: " + this.marque + "\nPROCESSEUR: " + this.processeur + "\nRAM: " + this.ram + " Go\nROM: " + this.rom + " GB\nVITESSE: " + this.vitesse + "GHz";
     }
 
 }

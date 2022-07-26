@@ -40,10 +40,10 @@ public class autresUtil implements autresUtilLocal {
         em.persist(new AutresDispo(idAutres));
     }
 
-    @Override
-    public void addAutresUtilise(int idAutres, int matricule) {
-        em.persist(new AutresUtilise(idAutres, matricule));
-    }
+   // @Override
+    //public void addAutresUtilise(int idAutres, int matricule) {
+    //    em.persist(new AutresUtilise(idAutres, matricule));
+   // }
 
     @Override
     public Autres loadAutresByID(int idAutres) {

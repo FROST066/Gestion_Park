@@ -24,7 +24,7 @@ public interface autresUtilLocal {
 
     public void addAutresDispo(int idAutres);
 
-    public void addAutresUtilise(int idAutres, int matricule);
+    //public void addAutresUtilise(int idAutres, int matricule);
 
     public Autres loadAutresByID(int idAutres);
 

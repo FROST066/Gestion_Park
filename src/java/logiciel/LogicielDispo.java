@@ -1,6 +1,10 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package logiciel;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,46 +12,54 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author spmy
+ */
 @Entity
-@Table(name = "LOGICIEL_DISPO")
+@Table(name = "LOGICIEL_DISPO", catalog = "Gestion_Park", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "LogicielDispo.findAll", query = "SELECT l FROM LogicielDispo l"),
+    @NamedQuery(name = "LogicielDispo.findByIdLogicielDispo", query = "SELECT l FROM LogicielDispo l WHERE l.idLogicielDispo = :idLogicielDispo")})
 public class LogicielDispo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_LOGICIEL_DISPO")
+    @Basic(optional = false)
+    @Column(name = "ID_LOGICIEL_DISPO", nullable = false)
     private Integer idLogicielDispo;
+    @JoinColumn(name = "ID_LOGICIEL", referencedColumnName = "ID_LOGICIEL", nullable = false)
+    @ManyToOne(optional = false)
+    private Logiciel idLogiciel;
+
+    public LogicielDispo() {
+    }
+
+    public LogicielDispo(Integer idLogicielDispo) {
+        this.idLogicielDispo = idLogicielDispo;
+    }
 
     public Integer getIdLogicielDispo() {
         return idLogicielDispo;
     }
-    @Column(name = "ID_LOGICIEL")
-    private int idLogiciel;
 
-    public int getIdLogiciel() {
+    public void setIdLogicielDispo(Integer idLogicielDispo) {
+        this.idLogicielDispo = idLogicielDispo;
+    }
+
+    public Logiciel getIdLogiciel() {
         return idLogiciel;
     }
 
-    public void setIdLogiciel(int idLogiciel) {
-        this.idLogiciel = idLogiciel;
-    }
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ID_LOGICIEL", nullable = false, insertable = false, updatable = false)
-    private Logiciel logiciel;
-
-    public Logiciel getLogiciel() {
-        return logiciel;
-    }
-
-    public LogicielDispo() {
-        this(0);
-    }
-
-    public LogicielDispo(Integer idLogiciel) {
+    public void setIdLogiciel(Logiciel idLogiciel) {
         this.idLogiciel = idLogiciel;
     }
 
@@ -65,12 +77,15 @@ public class LogicielDispo implements Serializable {
             return false;
         }
         LogicielDispo other = (LogicielDispo) object;
-        return !((this.idLogicielDispo == null && other.idLogicielDispo != null) || (this.idLogicielDispo != null && !this.idLogicielDispo.equals(other.idLogicielDispo)));
+        if ((this.idLogicielDispo == null && other.idLogicielDispo != null) || (this.idLogicielDispo != null && !this.idLogicielDispo.equals(other.idLogicielDispo))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "TEST.LogicielDispo[ idLogicielDispo=" + idLogicielDispo + " ]";
+        return "employe.LogicielDispo[ idLogicielDispo=" + idLogicielDispo + " ]";
     }
-
+    
 }

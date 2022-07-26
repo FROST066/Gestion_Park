@@ -1,6 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package autres;
 
 import employe.Employe;
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,55 +13,65 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author spmy
+ */
 @Entity
-@Table(name = "AUTRES_UTILISE")
+@Table(name = "AUTRES_UTILISE", catalog = "Gestion_Park", schema = "")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "AutresUtilise.findAll", query = "SELECT a FROM AutresUtilise a"),
+    @NamedQuery(name = "AutresUtilise.findByIdAutresUtilise", query = "SELECT a FROM AutresUtilise a WHERE a.idAutresUtilise = :idAutresUtilise")})
 public class AutresUtilise implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_AUTRES_UTILISE")
+    @Basic(optional = false)
+    @Column(name = "ID_AUTRES_UTILISE", nullable = false)
     private Integer idAutresUtilise;
+    @JoinColumn(name = "ID_AUTRES", referencedColumnName = "ID_AUTRES", nullable = false)
+    @ManyToOne(optional = false)
+    private Autres idAutres;
+    @JoinColumn(name = "MATRICULE", referencedColumnName = "MATRICULE", nullable = false)
+    @ManyToOne(optional = false)
+    private Employe matricule;
+
+    public AutresUtilise() {
+    }
+
+    public AutresUtilise(Integer idAutresUtilise) {
+        this.idAutresUtilise = idAutresUtilise;
+    }
 
     public Integer getIdAutresUtilise() {
         return idAutresUtilise;
     }
-    @Column(name = "ID_AUTRES")
-    private int idAutres;
 
-    public int getIdAutres() {
+    public void setIdAutresUtilise(Integer idAutresUtilise) {
+        this.idAutresUtilise = idAutresUtilise;
+    }
+
+    public Autres getIdAutres() {
         return idAutres;
     }
-    private int matricule;
 
-    public int getMatricule() {
+    public void setIdAutres(Autres idAutres) {
+        this.idAutres = idAutres;
+    }
+
+    public Employe getMatricule() {
         return matricule;
     }
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ID_AUTRES", nullable = false, insertable = false, updatable = false)
-    private Autres autres;
-
-    public Autres getAutres() {
-        return autres;
-    }
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "MATRICULE", nullable = false, insertable = false, updatable = false)
-    private Employe employe;
-
-    public Employe getEmploye() {
-        return employe;
-    }
-
-    public AutresUtilise() {
-        this(0, 0);
-    }
-
-    public AutresUtilise(int idAutres, int matricule) {
-        this.idAutres = idAutres;
+    public void setMatricule(Employe matricule) {
         this.matricule = matricule;
     }
 
@@ -74,12 +89,15 @@ public class AutresUtilise implements Serializable {
             return false;
         }
         AutresUtilise other = (AutresUtilise) object;
-        return !((this.idAutresUtilise == null && other.idAutresUtilise != null) || (this.idAutresUtilise != null && !this.idAutresUtilise.equals(other.idAutresUtilise)));
+        if ((this.idAutresUtilise == null && other.idAutresUtilise != null) || (this.idAutresUtilise != null && !this.idAutresUtilise.equals(other.idAutresUtilise))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "TEST.AutresUtilise[ idAutresUtilise=" + idAutresUtilise + " ]";
+        return "employe.AutresUtilise[ idAutresUtilise=" + idAutresUtilise + " ]";
     }
-
+    
 }

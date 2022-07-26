@@ -5,7 +5,7 @@
 package ordinateur;
 
 import employe.Employe;
-import java.io.Serializable;
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -21,56 +25,57 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "ORDINATEUR_UTILISE")
-
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "OrdinateurUtilise.findAll", query = "SELECT o FROM OrdinateurUtilise o"),
+    @NamedQuery(name = "OrdinateurUtilise.findByIdOrdinateurUtilise", query = "SELECT o FROM OrdinateurUtilise o WHERE o.idOrdinateurUtilise = :idOrdinateurUtilise")})
 public class OrdinateurUtilise implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ORDINATEUR_UTILISE")
+    @Basic(optional = false)
+    @Column(name = "ID_ORDINATEUR_UTILISE", nullable = false)
     private Integer idOrdinateurUtilise;
-    @Column(name = "ID_ORDINATEUR")
-    private int idOrdinateur;
-    private int matricule;
+    @JoinColumn(name = "ID_ORDINATEUR", referencedColumnName = "ID_ORDINATEUR", nullable = false)
+    @ManyToOne(optional = false)
+    private Ordinateur idOrdinateur;
+    @JoinColumn(name = "MATRICULE", referencedColumnName = "MATRICULE", nullable = false)
+    @ManyToOne(optional = false)
+    private Employe matricule;
 
     public OrdinateurUtilise() {
-        this(0, 0);
+        this(null, null);
     }
+
+    public OrdinateurUtilise(Ordinateur idOrdinateur, Employe matricule) {
+        this.idOrdinateur = idOrdinateur;
+        this.matricule = matricule;
+    }
+
 
     public Integer getIdOrdinateurUtilise() {
         return idOrdinateurUtilise;
     }
 
-    public int getIdOrdinateur() {
+    public void setIdOrdinateurUtilise(Integer idOrdinateurUtilise) {
+        this.idOrdinateurUtilise = idOrdinateurUtilise;
+    }
+
+    public Ordinateur getIdOrdinateur() {
         return idOrdinateur;
     }
 
-    public void setIdOrdinateur(int idOrdinateur) {
+    public void setIdOrdinateur(Ordinateur idOrdinateur) {
         this.idOrdinateur = idOrdinateur;
     }
 
-    public int getMatricule() {
+    public Employe getMatricule() {
         return matricule;
     }
 
-    public void setMatricule(int matricule) {
+    public void setMatricule(Employe matricule) {
         this.matricule = matricule;
-    }
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "MATRICULE", nullable = false, insertable = false, updatable = false)
-    private Employe employe;
-
-    public Employe getEmploye() {
-        return employe;
-    }
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ID_ORDINATEUR", nullable = false, insertable = false, updatable = false)
-    private Ordinateur ordinateur;
-
-    public Ordinateur getOrdinateur() {
-        return ordinateur;
     }
 
     @Override
@@ -87,17 +92,15 @@ public class OrdinateurUtilise implements Serializable {
             return false;
         }
         OrdinateurUtilise other = (OrdinateurUtilise) object;
-        return !((this.idOrdinateurUtilise == null && other.idOrdinateurUtilise != null) || (this.idOrdinateurUtilise != null && !this.idOrdinateurUtilise.equals(other.idOrdinateurUtilise)));
-    }
-
-    public OrdinateurUtilise(int idOrdinateur, int matricule) {
-        this.idOrdinateur = idOrdinateur;
-        this.matricule = matricule;
+        if ((this.idOrdinateurUtilise == null && other.idOrdinateurUtilise != null) || (this.idOrdinateurUtilise != null && !this.idOrdinateurUtilise.equals(other.idOrdinateurUtilise))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "TEST.OrdinateurUtilise[ idOrdinateurUtilise=" + idOrdinateurUtilise + " ]";
+        return "ordinateur.OrdinateurUtilise[ idOrdinateurUtilise=" + idOrdinateurUtilise + " ]";
     }
-
+    
 }

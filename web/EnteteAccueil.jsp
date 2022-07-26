@@ -74,10 +74,10 @@
     <body>
          <div class="entete">
              <img class="logo" src="img/logo2.png" alt=""/>
-             <div class="div div1"> <div class="img"><img src="img/list.png"/> </div>  <a href="/WebApp/Stock"><b>Equipements en Stock</b></a></div>
-             <div class="div div2"> <div class="img"><img src="img/list.png"/> </div>  <a href="/WebApp/Allouees.jsp"><b>Equipements alloués</b></a></div>
-             <div class="div div3"> <div class="img"><img src="img/add.png"/> </div>  <a href="/WebApp/Ajout"><b>Ajouter Equipement</b></a></div>
-             <div class="div div4"> <div class="img"><img src="img/lo.png"/> </div>  <a href="/WebApp"><b>Déconnexion</b></a></div>
+             <div class="div div1"> <div class="img"><img src="img/list.png"/> </div> <a href="/WebApp/Stock"><b>Equipements en Stock</b></a></div>
+             <div class="div div2"> <div class="img"><img src="img/list.png"/> </div> <a href="/WebApp/Alloues"><b>Equipements alloués</b></a></div>
+             <div class="div div3"> <div class="img"><img src="img/add.png"/> </div> <a href="/WebApp/Ajout"><b>Ajouter Equipement</b></a></div>
+             <div class="div div4"> <div class="img"><img src="img/lo.png"/> </div> <a href="/WebApp/Deconnexion"><b>Déconnexion</b></a></div>
            
          </div>
         
