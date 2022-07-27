@@ -39,7 +39,7 @@ public class AutresDispo implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_AUTRES_DISPO", nullable = false)
     private Integer idAutresDispo;
-
+/*
     public Date getDateLivraison() {
         return dateLivraison;
     }
@@ -50,7 +50,7 @@ public class AutresDispo implements Serializable {
     @Basic(optional = false)
     @Column(name = "DATE_LIVRAISON", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateLivraison;
+    private Date dateLivraison;*/
     @JoinColumn(name = "ID_AUTRES", referencedColumnName = "ID_AUTRES", nullable = false)
     @ManyToOne(optional = false)
     private Autres idAutres;

@@ -79,10 +79,7 @@ public class MemoireDispo implements Serializable {
             return false;
         }
         MemoireDispo other = (MemoireDispo) object;
-        if ((this.idMemoireDispo == null && other.idMemoireDispo != null) || (this.idMemoireDispo != null && !this.idMemoireDispo.equals(other.idMemoireDispo))) {
-            return false;
-        }
-        return true;
+        return !((this.idMemoireDispo == null && other.idMemoireDispo != null) || (this.idMemoireDispo != null && !this.idMemoireDispo.equals(other.idMemoireDispo)));
     }
 
     @Override

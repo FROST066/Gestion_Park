@@ -285,7 +285,7 @@
                     <tr ><td class="categorie"  colspan="8" ><b>Autres</b><img src="img/usb.png"/></td></tr>
                     <tr>
                         <td>Nom</td>
-                        <td>Capacite</td>
+                        <td>Description</td>
                         <td>Acheter</td>
                         <c:forEach var="row" items="${Autres}">
                         <tr>

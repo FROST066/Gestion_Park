@@ -13,18 +13,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Deconnexion", urlPatterns = {"/Deconnexion"})
 public class Deconnexion extends HttpServlet {
-@EJB
-private  ordiDAOLocal util;
-@EJB
-private autresUtilLocal util2;
     
         @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //request.getSession().removeAttribute("employe");
         request.getSession().invalidate();
         response.sendRedirect("index.jsp");
-        
     }
 
     @Override
@@ -37,5 +31,4 @@ private autresUtilLocal util2;
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

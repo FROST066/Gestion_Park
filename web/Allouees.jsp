@@ -216,7 +216,7 @@
     </head>
 
     <body>
-          <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
+        <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
         <%@include file="EnteteAccueil.jsp" %>
         <h1>Listes des Equipements Allouées</h1><br>
         <div class="Liste">
@@ -254,8 +254,8 @@
                     <c:forEach var="row" items="${LogicielsU}">
                         <tr>
                             <td><c:out value="${row.getIdLogiciel().getNomLogiciel()}" /></td>
-                        <td><c:out value="${row.getIdLogiciel().getType()}" /></td>
-                        <td><c:out value="${row.getIdLogiciel().getVersion()}" /></td>
+                            <td><c:out value="${row.getIdLogiciel().getType()}" /></td>
+                            <td><c:out value="${row.getIdLogiciel().getVersion()}" /></td>
                         </tr>
 
                     </c:forEach>
@@ -266,11 +266,10 @@
                     <tr>
                         <td>Nom</td>
                         <td>Capacite</td>
-                        <td>Acheter</td>
-                    <c:forEach var="row" items="${MemoiresU}">
+                        <c:forEach var="row" items="${MemoiresU}">
                         <tr>
                             <td><c:out value="${row.getIdMemoire().getNomMemoire()}" /></td>
-                        <td><c:out value="${row.getIdMemoire().getCapacite()}" /></td>
+                            <td><c:out value="${row.getIdMemoire().getCapacite()}" /></td>
                         </tr>
                     </c:forEach>
                 </table><br><br><br>
@@ -279,11 +278,11 @@
                     <tr ><td class="categorie"  colspan="8" ><b>Autres</b><img src="img/usb.png"/></td></tr>
                     <tr>
                         <td>Nom</td>
-                        <td>Capacite</td>
-                    <c:forEach var="row" items="${AutresU}">
+                        <td>Description</td>
+                        <c:forEach var="row" items="${AutresU}">
                         <tr>
                             <td><c:out value="${row.getIdAutres().getNom() }" /></td>
-                        <td><c:out value="${row.getIdAutres().getDescription()}" /></td>
+                            <td><c:out value="${row.getIdAutres().getDescription()}" /></td>
                         </tr>
                     </c:forEach>
                 </table>
