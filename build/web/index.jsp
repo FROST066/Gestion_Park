@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
 
-        
+
         .part1
         {
             height: 100vh;
@@ -253,35 +253,33 @@
     </style>
 </head>
 <body>
-    
-            <div class="part1">
-                <img src="img/logo2.png" alt=""/>
-                <h3>Gestion<br>Du Parc<br>Informatique<br>D'IFRI</h3>
-                <p class="connect">Veuillez vous connecter avec vos informations personnelles</p><br>
 
-            </div>
-            <div class="part2">
-                <div class="conteneur">
-                    <form action="Acceuil" method="POST">
-                        <p><b>Bienvenue!</b></p>
-                        <input type="text" name="matricule" placeholder="Matricule"><br>
-                        <input type="password" name="mdps" placeholder="Mot de passe"><br><br>
-                        <input type="submit" value="Submit"  class="button"/> <br><br><br><br><br>
-                        <%
-                            if (session.getAttribute("mpsIncorrect")!=null) 
-                            //out.println("<p style=\"position: relative\"> Matricule ou mot de passe incorrect!</p>");
-                          out.println(" <script> alert(\"Matricule ou mot de passe incorrect\");</script>");
-                        %>
+    <div class="part1">
+        <img src="img/logo2.png" alt=""/>
+        <h3>Gestion<br>Du Parc<br>Informatique<br>D'IFRI</h3>
+        <p class="connect">Veuillez vous connecter avec vos informations personnelles</p><br>
 
-                        <a href="#">Mot de passe oublie?</a>
-                    </form>
-                        
-                    <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
-                    <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
-                    <div class="drop drop-9"></div><div class="drop drop-10"></div>
-                </div>
-            </div>
-       
+    </div>
+    <div class="part2">
+        <div class="conteneur">
+            <form action="Acceuil" method="POST">
+                <p><b>Bienvenue!</b></p>
+                <input type="text" name="matricule" placeholder="Matricule"><br>
+                <input type="password" name="mdps" placeholder="Mot de passe"><br><br>
+                <input type="submit" value="Submit"  class="button"/> <br><br><br><br><br>
+                <%
+                    if (session.getAttribute("mpsIncorrect")!=null) 
+                    //out.println("<p style=\"position: relative\"> Matricule ou mot de passe incorrect!</p>");
+                  out.println(" <script> alert(\"Matricule ou mot de passe incorrect\");</script>");
+                %>
 
+                <a href="#">Mot de passe oublie?</a>
+            </form>
+
+            <div class="drop drop-1"></div><div class="drop drop-2"></div><div class="drop drop-3"></div><div class="drop drop-4"></div>
+            <div class="drop drop-5"></div><div class="drop drop-6"></div><div class="drop drop-7"></div><div class="drop drop-8"></div>
+            <div class="drop drop-9"></div><div class="drop drop-10"></div>
+        </div>
+    </div>
 </body>
 </html>  

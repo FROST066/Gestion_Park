@@ -217,7 +217,6 @@
     </head>
 
     <body>
-          <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
         <%@include file="EnteteAccueil.jsp" %>
         <a class="secours" href="/WebApp/Acceuil">Copyrigth</a>
         <h1>Ajouter un equipement au Stock</h1><br>

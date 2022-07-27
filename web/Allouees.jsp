@@ -216,7 +216,7 @@
     </head>
 
     <body>
-        <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
+        
         <%@include file="EnteteAccueil.jsp" %>
         <h1>Listes des Equipements Allouées</h1><br>
         <div class="Liste">

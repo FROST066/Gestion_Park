@@ -210,8 +210,7 @@
         </style>
     </head>
     <body>
-        <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
-        <%@include file="EnteteAccueil.jsp" %>
+              <%@include file="EnteteAccueil.jsp" %>
         <div class="LAlloue">
 
             <div class="Circle">
