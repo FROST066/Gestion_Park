@@ -5,6 +5,7 @@
 package servlet;
 
 import autres.autresUtilLocal;
+import employe.Employe;
 import jakarta.ejb.EJB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,11 +55,19 @@ public class Allouees extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getSession().getAttribute("employe") != null) {
-            request.getSession().setAttribute("OrdinateursU", util1.allOrdinateurUtilise());
+            
+            Employe emp= (Employe) request.getSession().getAttribute("employe");
+            request.getSession().setAttribute("OrdinateursU", emp.getOrdinateurUtiliseList());
+            request.getSession().setAttribute("LogicielsU", emp.getLogicielUtiliseList());
+            request.getSession().setAttribute("MemoiresU", emp.getMemoireUtiliseList());
+            request.getSession().setAttribute("AutresU", emp.getAutresUtiliseList());
+            response.sendRedirect("Allouees.jsp");      
+                          
+          /*  request.getSession().setAttribute("OrdinateursU", util1.allOrdinateurUtilise());
             request.getSession().setAttribute("LogicielsU", util2.allLogicielUtilise());
             request.getSession().setAttribute("MemoiresU", util3.allMemoireUtilise());
             request.getSession().setAttribute("AutresU", util4.allAutresUtilise());
-            response.sendRedirect("Allouees.jsp");
+            response.sendRedirect("Allouees.jsp");*/
             //request.getRequestDispatcher("Ajout.jsp").forward(request, response);
         } else {
             response.sendRedirect("index.jsp");

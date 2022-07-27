@@ -9,6 +9,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@page import="ordinateur.OrdinateurUtilise" %>
+        <%@page import="memoire.MemoireUtilise" %>
+        <%@page import="logiciel.LogicielUtilise" %>
+        <%@page import="autres.AutresUtilise" %>
         <title>Allocation d'Equipements</title>
         <style>
             body
@@ -213,6 +216,7 @@
     </head>
 
     <body>
+          <% if(session.getAttribute("employe")==null) response.sendRedirect("index.jsp");%>
         <%@include file="EnteteAccueil.jsp" %>
         <h1>Listes des Equipements Allouées</h1><br>
         <div class="Liste">

@@ -11,28 +11,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "NewServlet", urlPatterns = {"/Deconnexion"})
-public class NewServlet extends HttpServlet {
+@WebServlet(name = "Deconnexion", urlPatterns = {"/Deconnexion"})
+public class Deconnexion extends HttpServlet {
 @EJB
 private  ordiDAOLocal util;
 @EJB
 private autresUtilLocal util2;
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String nom=request.getParameter("name");
-        String prenom=request.getParameter("surname");
-        int age=Integer.parseInt(request.getParameter("old")); 
-        //util.addOrdinateurUtilise(1, 1);
-        //System.out.println(util.loadOrdinateurDispoByID(age).getOrdinateur());
-        util2.addAutres(nom, prenom);
-    }
-
-    @Override
+        @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        request.getSession().removeAttribute("employe");
+        //request.getSession().removeAttribute("employe");
         request.getSession().invalidate();
         response.sendRedirect("index.jsp");
         
@@ -41,7 +30,6 @@ private autresUtilLocal util2;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
     }
 

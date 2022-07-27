@@ -3,28 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/servlet/Allouees.java</file>
             <file>file:/home/spmy/NetBeansProjects/WebApp/web/Stock.jsp</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/autres/Autres.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/ordinateur/Ordinateur.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/logiciel/logicielUtil.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/autres/AutresDispo.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/autres/AutresUtilise.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/logiciel/LogicielUtilise.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/employe/Employe.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/logiciel/Logiciel.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/employe/EmployeUtil.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/memoire/MemoireUtilise.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/employe/EmployeUtilLocal.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/memoire/Memoire.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/ordinateur/ordiDAO.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/ordinateur/ordiDAOLocal.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/memoire/memoireUtil.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/ordinateur/OrdinateurDispo.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/autres/autresUtil.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/logiciel/LogicielDispo.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/memoire/MemoireDispo.java</file>
-            <file>file:/home/spmy/NetBeansProjects/WebApp/conf/persistence.xml</file>
+            <file>file:/home/spmy/NetBeansProjects/WebApp/web/Allouees.jsp</file>
+            <file>file:/home/spmy/NetBeansProjects/WebApp/web/EnteteAccueil.jsp</file>
+            <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/servlet/Ajout.java</file>
             <file>file:/home/spmy/NetBeansProjects/WebApp/src/java/servlet/Stock.java</file>
+            <file>file:/home/spmy/NetBeansProjects/WebApp/web/Ajout.jsp</file>
         </group>
     </open-files>
 </project-private>
